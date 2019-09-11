@@ -68,8 +68,13 @@ void IntroducirDatos(mat &v) {
 
       try {
         v[i][j] = stof(buf);
-      } catch (exception &e) {
-        cout << "Please enter it again";
+      }
+      catch (invalid_argument &) {
+        cout << endl << "Argumento invalido" << endl;
+        j--;
+      }
+      catch (out_of_range &) {
+        cout << endl << "Argumento fuera del rango permitido" << endl;
         j--;
       }
     }
