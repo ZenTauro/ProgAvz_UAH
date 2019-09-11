@@ -9,18 +9,29 @@
 
 using namespace std;
 
+floatMatrix::floatMatrix() {}
+floatMatrix::~floatMatrix() {}
+
 floatMatrix::floatMatrix(int nFilas, int nColumnas) {
   mtr = ConstruirMatriz(nFilas, nColumnas);
 }
-
-floatMatrix::floatMatrix() {}
-floatMatrix::~floatMatrix() {}
 
 void floatMatrix::modify() {
   if (mtr.has_value()) {
     IntroducirDatos(mtr.value());
   } else {
     cerr << "La matriz no existe" << endl;
+  }
+}
+
+void floatMatrix::show() {
+  auto v = mtr.value();
+
+  for (long unsigned int i = 0; i < v.size(); i++) {
+    for (long unsigned int j = 0; j < v[0].size(); j++) {
+      cout << v[i][j] << ' ';
+    }
+    cout << endl;
   }
 }
 
@@ -61,17 +72,6 @@ void IntroducirDatos(mat &v) {
         cout << "Please enter it again";
         j--;
       }
-    }
-    cout << endl;
-  }
-}
-
-void floatMatrix::show() {
-  auto v = mtr.value();
-
-  for (long unsigned int i = 0; i < v.size(); i++) {
-    for (long unsigned int j = 0; j < v[0].size(); j++) {
-      cout << v[i][j] << ' ';
     }
     cout << endl;
   }

@@ -46,10 +46,8 @@ int main() {
 
       break;
     }
-    case 2 : matrix.modify();
-      cout << "Modificando matriz" << endl;
-      break;
-    case 3 : matrix.show(); break;
+    case 2 : matrix.modify(); break;
+    case 3 : matrix.show();   break;
     case 4 : matrix.remove(); break;
     case 5 : continue;
     default : continue;
