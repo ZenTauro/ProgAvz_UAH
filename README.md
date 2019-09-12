@@ -13,7 +13,7 @@ y para compilarlo es:
 cmake --build Debug
 ```
 
-el binario se encuentra en `Debug/practica${version}` donde version es el numero de
+el binario se encuentra en `Debug/practica${version}` donde `${version}` es el numero de
 practica.
 
 ## Debugging
