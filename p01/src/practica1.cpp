@@ -51,10 +51,10 @@ int main() {
 
         break;
       }
-    case 2 : IntroducirDatos(&mat); break;
-    case 3 : Mostrar(mat); break;
-    case 4 : Destruir(&mat); break;
-    case 5 : continue;
+    case 2  : IntroducirDatos(&mat); break;
+    case 3  : Mostrar        ( mat); break;
+    case 4  : Destruir       (&mat); break;
+    case 5  : continue;
     default : continue;
     }
 
