@@ -7,19 +7,31 @@
 using namespace std;
 
 void Destruir(MatFloat *pMatFloat) {
-  pMatFloat->nColumnas = 0;
-  pMatFloat->nFilas = 0;
-
   if (pMatFloat->ppMatriz == NULL) {
     cout << "La matriz no existe" << endl;
+    pMatFloat->nColumnas = 0;
+    pMatFloat->nFilas = 0;
     return;
   }
 
-  for (int i = 0; i < pMatFloat->nFilas; ++i) {
-    delete pMatFloat->ppMatriz[i];
+  for (int i = 0; i < pMatFloat->nFilas; i++) {
+    delete[] pMatFloat->ppMatriz[i];
+
+#ifndef NDEBUG
+    cerr << "  [-] " << i << " Matrix row direcction:   0x" << hex
+         << reinterpret_cast<intptr_t>(pMatFloat->ppMatriz[i]) << endl;
+#endif
   }
 
-  delete pMatFloat->ppMatriz;
+  delete[] pMatFloat->ppMatriz;
+
+#ifndef NDEBUG
+  cerr << "  [-] Matrix initial direcction: 0x" << hex
+       << reinterpret_cast<intptr_t>(pMatFloat->ppMatriz) << endl;
+#endif
+
+  pMatFloat->nColumnas = 0;
+  pMatFloat->nFilas = 0;
 
   pMatFloat->ppMatriz = NULL;
 }
@@ -28,6 +40,12 @@ float** ConstruirMatriz(int nFilas, int nColumnas) {
   MatFloat mat {nFilas, nColumnas, NULL};
   try {
     mat.ppMatriz = new float*[nFilas];
+
+#ifndef NDEBUG
+    cerr << "  [+] Matrix initial direcction: 0x" << hex
+         << reinterpret_cast<intptr_t>(mat.ppMatriz) << endl;
+#endif
+
   } catch (bad_alloc &) {
     cout << "OOM error";
     mat.nFilas = 1;
@@ -41,6 +59,12 @@ float** ConstruirMatriz(int nFilas, int nColumnas) {
   for ( int i=0; i < nFilas; i++ ) {
     try {
       mat.ppMatriz[i] = new float[nColumnas];
+
+#ifndef NDEBUG
+      cerr << "  [+] " << i << " Matrix row direcction:   0x" << hex
+           << reinterpret_cast<intptr_t>(mat.ppMatriz[i]) << endl;
+#endif
+
     } catch (bad_alloc &) {
       mat.nFilas = nFilas;
       mat.nColumnas = i+1;
