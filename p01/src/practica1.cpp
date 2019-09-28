@@ -2,12 +2,17 @@
 #include <string>
 #include <limits>
 
+#include <aux.h>
 #include <funciones.h>
 
 using namespace std;
 
 int main() {
+  // Declaracion de variables
+  // Inicializamos la matriz con 0, 0, NULL para indicar que esta vacia
   MatFloat mat{0, 0, NULL};
+  // Para capturar las opciones utilizamos un string que luego pasaremos
+  // a op para poder capturar las excepciones que pueda generar.
   string opt;
   int op = 0;
 
@@ -22,8 +27,11 @@ int main() {
     cin >> opt;
 
     try {
+      // Pasamos opt a int con stoi para capturar las excepciones en caso
+      // de que la entrada sea invalida.
       op = stoi(opt);
     } catch(exception &) {
+      // Si la entrada es invalida simplemente pedimos otra seleccion
       cout << "Seleccione una opcion del menu";
       continue;
     }
@@ -45,8 +53,10 @@ int main() {
         mat.nColumnas = ncol;
         mat.ppMatriz = ConstruirMatriz(nfilas, ncol);
 
+        // En caso de no poder reservar memoria abortamos el programa retornando
+        // 1 como codigo de error
         if (mat.ppMatriz == NULL) {
-          return -1;
+          return 1;
         };
 
         break;
@@ -58,15 +68,12 @@ int main() {
     default : continue;
     }
 
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-    std::cout << "Presiona enter para continuar...";
-    std::cin.get();
-
-    std::cout << "\x1B[2J\x1B[H";
+    pause();
+    clear();
   }
 
+  // En el caso que la memoria usada por la matriz no haya sido liberada
+  // la liberamos, para que no haya fugas de memoria
   if (mat.ppMatriz != NULL) {
     Destruir(&mat);
   }
