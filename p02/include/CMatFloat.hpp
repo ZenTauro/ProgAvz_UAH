@@ -1,8 +1,10 @@
+typedef unsigned int uint;
+
 class CMatFloat {
 private:
   float **data;
-  int nRows;
-  int nCols;
+  uint nRows;
+  uint nCols;
 
 public:
   /// Executed each time a new matrix is created
@@ -21,6 +23,6 @@ public:
   bool Exists();
 
   CMatFloat();
-  CMatFloat(int, int) {}
+  CMatFloat(int, int);
   ~CMatFloat();
 };

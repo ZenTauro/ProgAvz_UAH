@@ -3,12 +3,21 @@
 #include <iostream>
 #include <string>
 
-CMatFloat::CMatFloat() {}
-CMatFloat::~CMatFloat() {}
-
-typedef unsigned int uint;
-
 using namespace std;
+
+CMatFloat::CMatFloat() {
+  cout << "Se llama a Iniciar\n";
+  Init();
+}
+CMatFloat::CMatFloat(int nRows, int nCols) {
+  Init();
+  Build2DMatrix(nRows, nCols);
+}
+CMatFloat::~CMatFloat() {
+  if(Exists()) {
+    Destroy();
+  }
+}
 
 /// Sets all the fields to a NULL state
 void CMatFloat::Init() {
@@ -29,7 +38,7 @@ void CMatFloat::Build2DMatrix(int nRows, int nCols) {
 void CMatFloat::Build1DMatrix(int nElem) {
   this->nCols = nElem;
 
-  for (int i = 0; i < nCols; i++) {
+  for (uint i = 0; i < nCols; i++) {
     this->data[i] = new float[this->nRows];
     this->data[i] = 0;
   }
