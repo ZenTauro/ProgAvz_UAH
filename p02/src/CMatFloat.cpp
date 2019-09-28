@@ -39,8 +39,8 @@ void CMatFloat::Build1DMatrix(int nElem) {
 void CMatFloat::Enter() {
   string buf{};
 
-  for (long unsigned int i = 0; i < this->nRows; i++) {
-    for (long unsigned int j = 0; j < this->nCols; j++) {
+  for (uint i = 0; i < this->nRows; i++) {
+    for (uint j = 0; j < this->nCols; j++) {
       cout << " [" << i << "][" << j << "]: ";
       cin >> buf;
 
