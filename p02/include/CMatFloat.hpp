@@ -21,5 +21,6 @@ public:
   bool Exists();
 
   CMatFloat();
+  CMatFloat(int, int) {}
   ~CMatFloat();
 };
