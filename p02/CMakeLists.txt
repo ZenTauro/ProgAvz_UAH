@@ -3,7 +3,7 @@
 #
 cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 set (CMAKE_CXX_STANDARD 17)
-project(practica1)
+project(practica2)
 
 # Enable ccache by default and as early as possible because project() performs
 # checks on the compiler
@@ -40,10 +40,10 @@ file(GLOB objs     obj/*.o)
 ###############################################################################
 # The data is just added to the executable, because in some IDEs (QtCreator)
 # files are invisible when they are not explicitly part of the project.
-add_executable(practica1 ${sources} ${objs})
+add_executable(practica2 ${sources} ${objs})
 
 # Just for example add some compiler flags.
-target_compile_options(practica1 PUBLIC -Wall -Wfloat-conversion -pipe)
+target_compile_options(practica2 PUBLIC -Wall -Wfloat-conversion -pipe)
 
 # This allows to include files relative to the root of the src directory with a <> pair
-target_include_directories(practica1 PUBLIC include)
+target_include_directories(practica2 PUBLIC include)
