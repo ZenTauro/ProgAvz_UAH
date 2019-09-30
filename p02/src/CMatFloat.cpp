@@ -1,5 +1,6 @@
 #include <CMatFloat.hpp>
 
+#include <cstring>
 #include <iostream>
 #include <string>
 
@@ -10,7 +11,7 @@ CMatFloat::CMatFloat() {
   Init();
 }
 CMatFloat::CMatFloat(int nRows, int nCols) {
-  Init();
+this->  Init();
   Build2DMatrix(nRows, nCols);
 }
 CMatFloat::~CMatFloat() {
@@ -39,8 +40,8 @@ void CMatFloat::Build1DMatrix(int nElem) {
   this->nCols = nElem;
 
   for (uint i = 0; i < nCols; i++) {
-    this->data[i] = new float[this->nRows];
-    this->data[i] = 0;
+    this->data[i] = new float[nElem];
+    memset(this->data[i], 0, nElem * sizeof(float));
   }
 }
 
@@ -69,8 +70,10 @@ void CMatFloat::Enter() {
 
 /// Shows the contents of the matrix
 void CMatFloat::Show() {
-  for (uint j = 0; j < nRows; j++) {
-    for (uint i = 0; i < nCols; i++) {
+  if (this->data == NULL || this->nRows == 0 || this->nCols == 0) return;
+
+  for (uint j = 0; j < this->nRows; j++) {
+    for (uint i = 0; i < this->nCols; i++) {
       cout << data[j][i] << " ";
     }
     cout << endl;

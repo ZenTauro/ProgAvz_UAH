@@ -1,3 +1,6 @@
+#ifndef CMATFLOAT_HPP
+#define CMATFLOAT_HPP
+
 typedef unsigned int uint;
 
 class CMatFloat {
@@ -26,3 +29,5 @@ public:
   CMatFloat(int, int);
   ~CMatFloat();
 };
+
+#endif
