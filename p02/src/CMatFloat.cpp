@@ -22,6 +22,10 @@ CMatFloat::~CMatFloat() {
 
 /// Sets all the fields to a NULL state
 void CMatFloat::Init() {
+  if (this->data) {
+    cout << "La matriz existe, destruyala para crear una nueva" << endl;
+    return;
+  }
   this->nCols = 0;
   this->nRows = 0;
   this->data = NULL;
@@ -32,16 +36,17 @@ void CMatFloat::Build2DMatrix(int nRows, int nCols) {
   this->nRows = nRows;
   this->data = new float *[nRows];
 
-  this->Build1DMatrix(nRows);
+  this->Build1DMatrix(nCols);
 }
 
 /// Assigns dynamic memory to accomodate a 1D matrix
 void CMatFloat::Build1DMatrix(int nElem) {
   this->nCols = nElem;
 
-  for (uint i = 0; i < nCols; i++) {
+  for (int i = 0; i < nElem; ++i) {
     this->data[i] = new float[nElem];
-    memset(this->data[i], 0, nElem * sizeof(float));
+    for (int j = 0; j < nElem; ++j)
+      this->data[i][j] = 0;
   }
 }
 
@@ -86,11 +91,15 @@ void CMatFloat::Destroy() {
     for (uint i=0; i<nRows; i++) {
       if (this->data[i] != NULL) {
         delete[] this->data[i];
+        // cout << "destroyed " << i << " row" << endl;
       }
     }
 
     delete[] this->data;
+    // cout << "destroyed main column" << endl;
     this->data = NULL;
+    this->nCols = 0;
+    this->nRows = 0;
   }
 }
 
