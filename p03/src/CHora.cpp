@@ -60,9 +60,6 @@ void CHora::Iniciar() {
   this->m_nHoras = 0;
   this->m_nMinutos = 0;
   this->m_nSegundos = 0;
-  if (this->m_pszFormato) {
-    delete[] this->m_pszFormato;
-  }
   this->m_pszFormato = NULL;
 }
 
@@ -80,11 +77,13 @@ bool CHora::AsignarHora(int nHoras, int nMinutos, int nSegundos,
 
 void CHora::ObtenerHora(int &nHoras, int &nMinutos, int &nSegundos,
                         char *pszFormato) const {
-  nHoras = this->m_nHoras;
-  nMinutos = this->m_nMinutos;
+  nHoras    = this->m_nHoras;
+  nMinutos  = this->m_nMinutos;
   nSegundos = this->m_nSegundos;
 
   uint8_t size = strnlen(this->m_pszFormato, sizeof(char) * 8);
+
+  // Se optimiza por una llamada a memcpy
   for (uint8_t i = 0; i < size; i++) {
     pszFormato[i] = this->m_pszFormato[i];
   }
