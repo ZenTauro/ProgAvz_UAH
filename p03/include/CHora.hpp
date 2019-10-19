@@ -43,7 +43,7 @@ public:
   /// Devuelve false si no pudo ser asignado el formato
   /// o el valor retornado por EsHoraCorrecta.
   bool AsignarHora(int nHoras, int nMinutos, int nSegundos,
-                   char *pszFormato);
+                   const char *const pszFormato);
 
   /// Obtener una hora. Permite obtener los datos hora,
   /// minutos, segundos y formato correspondientes

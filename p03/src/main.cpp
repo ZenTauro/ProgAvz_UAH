@@ -1,10 +1,9 @@
 #include <CHora.hpp>
 #include <iostream>
 #include <utils.hpp>
+#include <string>
 
 using namespace std;
-
-
 
 int main() {
   static const char *const menu_ops[30] =
@@ -25,11 +24,39 @@ int main() {
 
     switch (opt) {
     case utils::MenuOps::introducir: {
+      int h, m, s;
+      auto buffer = string{};
+      auto line = new char[10];
+      try {
+        cout << "Hora: ";
+        h = utils::LeerInt();
+        cout << "Minutos: ";
+        m = utils::LeerInt();
+        cout << "Segundos: ";
+        s = utils::LeerInt();
+
+        cout << "Formato: ";
+        utils::LeerCadena(line, 10);
+      } catch (exception &e) {
+        cout << "Entrada no valida" << endl;
+        break;
+      }
+
+      if (!hora.AsignarHora(h, m, s, line)) {
+        cout << line << '*' << endl;
+        cout << "Formato de fecha invalido" << endl;
+      }
 
       break;
     };
     case utils::MenuOps::visualizar: {
+      int h, m, s;
+      char *f = new char[8];
+      hora.ObtenerHora(h, m, s, f);
 
+      if (f[0] == 0) break;
+
+      cout << " " << h << ":" << m << ":" << s << " " << f << endl;
       break;
     };
     case utils::MenuOps::terminar: {

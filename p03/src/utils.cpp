@@ -34,11 +34,12 @@ namespace utils {
   int CrearMenu(const char *const opciones_menu[], int num_opciones) {
     for( uint8_t i = 0; i < num_opciones; i++ )
       std::cout << " " << i + 1 << ". " << opciones_menu[i] << std::endl;
+    std::cout << std::endl << "propmt> ";
 
     return 0;
   }
 
-  MenuOps LeerEntrada() {
+  MenuOps LeerEntrada() throw() {
     uint8_t a; MenuOps ret;
     auto buffer = std::string{};
 
@@ -56,14 +57,26 @@ namespace utils {
     return ret;
   }
 
-  float LeerFloat() {
-    float a;
-    std::cin >> a;
+  int LeerInt() {
+    uint8_t a;
+    auto buffer = std::string{};
+
+    std::cin >> buffer;
+
+    try {
+      a = std::stoi(buffer);
+    } catch (std::exception &e) {
+      throw;
+    }
 
     return a;
   }
 
   void LeerCadena(char *c, int n) {
+    std::cin.ignore(100000, '\n');
+    std::cin.clear();
+
+
     std::cin.getline(c, n, '\n');
     if (false) {
       std::cin.setstate(std::ios::failbit);

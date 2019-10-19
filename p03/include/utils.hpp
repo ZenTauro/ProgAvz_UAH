@@ -6,8 +6,8 @@ namespace utils {
   enum MenuOps { introducir=1, visualizar=2, terminar=3, other };
 
   int     CrearMenu(const char *const opciones_menu[], int num_opciones);
-  MenuOps LeerEntrada();
-  float   LeerFloat();
+  MenuOps LeerEntrada() throw();
+  int     LeerInt();
   void    LeerCadena(char *c, int n);
   char   *ConverMayus(char *str);
 
