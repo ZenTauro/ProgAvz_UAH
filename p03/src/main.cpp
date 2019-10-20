@@ -26,7 +26,8 @@ int main() {
     case utils::MenuOps::introducir: {
       int h, m, s;
       auto buffer = string{};
-      auto line = new char[10];
+      auto line = new char[32];
+      std::fill_n(line, 32, 0);
       try {
         cout << "Hora: ";
         h = utils::LeerInt();
@@ -47,16 +48,20 @@ int main() {
         cout << "Formato de fecha invalido" << endl;
       }
 
+      delete[] line;
       break;
     };
     case utils::MenuOps::visualizar: {
       int h, m, s;
-      char *f = new char[8];
+      char *f = new char[32];
+      std::fill_n(f, 32, 0);
+
       hora.ObtenerHora(h, m, s, f);
 
       if (f[0] == 0) break;
 
       cout << " " << h << ":" << m << ":" << s << " " << f << endl;
+      delete[] f;
       break;
     };
     case utils::MenuOps::terminar: {
