@@ -105,12 +105,14 @@ void CHora::operator=(CHora &obj){
   this->m_nHoras = obj.m_nHoras;
   this->m_nMinutos = obj.m_nMinutos;
   this->m_nSegundos = obj.m_nSegundos;
+  // Asumimos que los objetos solo pueden ser creados
+  // con formato correcto
   this->m_pszFormato = obj.m_pszFormato;
 }
 
-void CHora::Destruir() {}
+//void CHora::Destruir() {}
 
-CHora::~CHora() { Destruir(); }
+CHora::~CHora() {}
 
 CHora::CHora(int hora, int min, int seg, const char *formato) {
   this->m_nHoras = hora;
@@ -126,5 +128,7 @@ CHora::CHora(const CHora &obj) {
   this->m_nHoras = obj.m_nHoras;
   this->m_nMinutos = obj.m_nMinutos;
   this->m_nSegundos = obj.m_nSegundos;
+  // Asumimos que los objetos solo pueden ser creados
+  // con formato correcto
   this->m_pszFormato = obj.m_pszFormato;
 }

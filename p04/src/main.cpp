@@ -118,6 +118,7 @@ int main() {
 
         if (!var.EsHoraCorrecta()) {
           std::cout << "hora incorrecta" << std::endl;
+          delete[] temp4;
           break;
         };
 
@@ -153,8 +154,9 @@ int main() {
       CHora *hora = new CHora{temp1, temp2, temp3, temp4};
 
       if (!hora->EsHoraCorrecta()) {
-        delete hora;
         std::cout << "Hora incorrecta" << std::endl;
+        delete hora;
+        delete[] temp4;
         break;
       }
 
@@ -208,7 +210,11 @@ int main() {
 
     case utils::MenuOps1::other: {
       keep = false;
-      std::for_each(vec.begin(), vec.end(), [](auto elem) { elem->~CHora(); });
+      std::for_each(vec.begin(), vec.end(),
+                    [](auto elem) {
+                      elem->~CHora();
+                      delete elem;
+                    });
 
       break;
     };
