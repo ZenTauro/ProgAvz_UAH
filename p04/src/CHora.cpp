@@ -1,6 +1,7 @@
 #include <CHora.hpp>
 #include <algorithm>
 #include <cstring>
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -20,6 +21,7 @@ bool CHora::AsignarFormato(const char *const pszFormato) {
     }
 
     this->m_pszFormato = pszFormato;
+
     std::transform(this->m_pszFormato.begin(), this->m_pszFormato.end(),
                    this->m_pszFormato.begin(), ::toupper);
 
@@ -108,15 +110,13 @@ void CHora::operator=(CHora &obj){
 
 void CHora::Destruir() {}
 
-CHora::CHora() { Iniciar(); }
-
 CHora::~CHora() { Destruir(); }
 
 CHora::CHora(int hora, int min, int seg, const char *formato) {
   this->m_nHoras = hora;
   this->m_nMinutos = min;
   this->m_nSegundos = seg;
-  this->m_pszFormato = formato;
+  AsignarFormato(formato);
   if (!EsHoraCorrecta()) {
     this->m_pszFormato.clear();
   }

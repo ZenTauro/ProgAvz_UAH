@@ -34,26 +34,28 @@ namespace utils {
   int CUtils::CrearMenu(const char *const opciones_menu[], int num_opciones) {
     for( uint8_t i = 0; i < num_opciones; i++ )
       std::cout << " " << i + 1 << ". " << opciones_menu[i] << std::endl;
-    std::cout << std::endl << "propmt> ";
 
     return 0;
   }
 
-  MenuOps CUtils::LeerEntrada() throw() {
-    uint8_t a; MenuOps ret;
-    auto buffer = std::string{};
+  // template <typename T>
+  // inline T CUtils::LeerEntrada() {
+  //   uint8_t a;
+  //   T ret;
+  //   auto buffer = std::string{};
 
-    std::cin >> buffer;
+  //   std::cout << std::endl << "propmt> ";
+  //   std::cin >> buffer;
 
-    try {
-      a = std::stoi(buffer);
-      ret = static_cast<MenuOps>(a);
-    } catch (std::exception &e) {
-      ret = MenuOps::other;
-    }
+  //   try {
+  //     a = std::stoi(buffer);
+  //     ret = static_cast<T>(a);
+  //   } catch (std::exception &e) {
+  //     ret = static_cast<T>(0);
+  //   }
 
-    return ret;
-  }
+  //   return ret;
+  // }
 
   bool CUtils::LeerInt(int *ret) {
     uint8_t a;
@@ -84,19 +86,56 @@ namespace utils {
       return false;
     }
 
-    std::cin.exceptions(std::ios::failbit | std::ios::badbit);
-    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+
+    // std::cin.exceptions(std::ios::failbit | std::ios::badbit);
+    // std::cin.clear();
     try {
       std::cin.getline(c, n, '\n');
       if (std::cin.eof()) {
         return false;
       }
-      std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-      std::cin.exceptions(std::ios::goodbit);
+      // std::cin.exceptions(std::ios::goodbit);
     } catch (std::exception &e) {
-      std::cout << "Something bad happened" << std::endl;
+      std::cout << "Something bad happened: " << e.what() << std::endl;
     }
 
     return true;
   }
-} // namespace utils
+
+  MenuOps2 CUtils::LeerEntrada2() {
+    uint8_t a;
+    utils::MenuOps2 ret;
+    auto buffer = std::string{};
+
+    std::cout << std::endl << "propmt> ";
+    std::cin >> buffer;
+
+    try {
+      a = std::stoi(buffer);
+      ret = static_cast<utils::MenuOps2>(a);
+    } catch (std::exception &e) {
+      ret = utils::MenuOps2::ret;
+    }
+
+    return ret;
+  }
+
+  MenuOps1 CUtils::LeerEntrada1() {
+    uint8_t a;
+    utils::MenuOps1 ret;
+    auto buffer = std::string{};
+
+    std::cout << std::endl << "propmt> ";
+    std::cin >> buffer;
+
+    try {
+      a = std::stoi(buffer);
+      ret = static_cast<utils::MenuOps1>(a);
+    } catch (std::exception &e) {
+      ret = utils::MenuOps1::other;
+    }
+
+    return ret;
+  }
+  } // namespace utils
