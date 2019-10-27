@@ -5,6 +5,9 @@ cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 set (CMAKE_CXX_STANDARD 17)
 project(practica5)
 
+SET(COVERAGE_FLAGS "-Wall -Wextra -pedantic")
+add_definitions(${COVERAGE_FLAGS})
+
 # Enable ccache by default and as early as possible because project() performs
 # checks on the compiler
 option(ENABLE_CCACHE "Enable ccache support" ON)
