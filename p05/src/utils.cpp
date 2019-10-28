@@ -79,6 +79,7 @@ namespace utils {
 
     *ret = a;
 
+    // Clear input buffer
     std::cin.sync();
 
     return true;
@@ -89,6 +90,7 @@ namespace utils {
       return false;
     }
 
+    // Discard all whitespace
     std::cin >> std::ws;
 
     // std::cin.exceptions(std::ios::failbit | std::ios::badbit);
@@ -103,13 +105,14 @@ namespace utils {
       std::cout << "Something bad happened: " << e.what() << std::endl;
     }
 
-    // std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+    // Clear input buffer
     std::cin.sync();
 
     return true;
   }
 
   bool CUtils::LeerString(std::string &s) {
+    // Discard all whitespace
     std::cin >> std::ws;
 
     // std::cin.exceptions(std::ios::failbit | std::ios::badbit);
@@ -124,7 +127,7 @@ namespace utils {
       std::cout << "Something bad happened: " << e.what() << std::endl;
     }
 
-    // std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+    // Clear input buffer
     std::cin.sync();
 
     return true;
