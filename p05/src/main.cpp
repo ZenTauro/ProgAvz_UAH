@@ -44,18 +44,13 @@ int main() {
       cout << "Edad: ";
       utils::CUtils::LeerInt(&edad);
 
-      cout << formato << endl;
       auto tmp = string(formato);
-      cout << tmp << endl;
 
       trim(tmp);
       trim(nombre);
 
-      cout << tmp << endl;
       auto temp = CFicha{nombre, edad, hh, mm, ss, tmp};
       ficha = temp;
-
-      cout << tmp << endl;
 
       delete[] buffer;
       break;

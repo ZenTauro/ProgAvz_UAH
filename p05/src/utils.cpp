@@ -78,6 +78,9 @@ namespace utils {
     }
 
     *ret = a;
+
+    std::cin.sync();
+
     return true;
   }
 
@@ -86,7 +89,7 @@ namespace utils {
       return false;
     }
 
-    std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+    std::cin >> std::ws;
 
     // std::cin.exceptions(std::ios::failbit | std::ios::badbit);
     // std::cin.clear();
@@ -100,11 +103,14 @@ namespace utils {
       std::cout << "Something bad happened: " << e.what() << std::endl;
     }
 
+    // std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+    std::cin.sync();
+
     return true;
   }
 
   bool CUtils::LeerString(std::string &s) {
-    std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+    std::cin >> std::ws;
 
     // std::cin.exceptions(std::ios::failbit | std::ios::badbit);
     // std::cin.clear();
@@ -117,6 +123,9 @@ namespace utils {
     } catch (std::exception &e) {
       std::cout << "Something bad happened: " << e.what() << std::endl;
     }
+
+    // std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+    std::cin.sync();
 
     return true;
   }
