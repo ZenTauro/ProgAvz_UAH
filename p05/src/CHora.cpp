@@ -119,7 +119,7 @@ CHora::CHora(int hora, int min, int seg, const char *formato) {
   this->m_nSegundos = seg;
   AsignarFormato(formato);
 
-  cout << "Fmt: " << this->m_pszFormato << " " << m_nHoras << ":" << m_nMinutos << ":" << m_nSegundos << endl;
+  // cout << "Fmt: " << this->m_pszFormato << " " << m_nHoras << ":" << m_nMinutos << ":" << m_nSegundos << endl;
 
   if (!EsHoraCorrecta()) {
     this->m_pszFormato.clear();

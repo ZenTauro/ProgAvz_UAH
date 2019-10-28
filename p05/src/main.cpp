@@ -24,12 +24,17 @@ int main() {
     case 1: {
       auto nombre = string{};
       auto formato = string{};
+      auto buffer = new char[10]();
       int hh = 0, mm = 0, ss = 0, edad = 0;
 
       cout << "Nombre: ";
-      utils::CUtils::LeerString(nombre);
+      utils::CUtils::LeerCadena(buffer, 9);
+      nombre = buffer;
+
       cout << "Formato: ";
-      utils::CUtils::LeerString(formato);
+      utils::CUtils::LeerCadena(buffer, 9);
+      formato = buffer;
+
       cout << "Hora: ";
       utils::CUtils::LeerInt(&hh);
       cout << "Minutos: ";
@@ -39,14 +44,20 @@ int main() {
       cout << "Edad: ";
       utils::CUtils::LeerInt(&edad);
 
+      cout << formato << endl;
       auto tmp = string(formato);
+      cout << tmp << endl;
 
       trim(tmp);
       trim(nombre);
 
+      cout << tmp << endl;
       auto temp = CFicha{nombre, edad, hh, mm, ss, tmp};
       ficha = temp;
 
+      cout << tmp << endl;
+
+      delete[] buffer;
       break;
     }
 

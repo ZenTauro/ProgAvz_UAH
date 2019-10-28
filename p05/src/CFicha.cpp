@@ -15,8 +15,6 @@ CFicha::CFicha(const string &sNombre, int nEdad, int nHoras, int nMinutos,
   this->m_sNombre = sNombre;
   this->m_nEdad = nEdad;
   this->m_horaNacio = hora;
-
-  VisualizarHora(*this);
 }
 
 void CFicha::AsignarNombre(const string &sNombre) {
