@@ -12,6 +12,8 @@ CFicha::CFicha(const string &sNombre, int nEdad, int nHoras, int nMinutos,
   auto temp = sFormato;
   auto hora = CHora{nHoras, nMinutos, nSegundos, sFormato.c_str()};
 
+  if (!hora.EsHoraCorrecta()) throw std::invalid_argument("Hora incorrecta");
+
   this->m_sNombre = sNombre;
   this->m_nEdad = nEdad;
   this->m_horaNacio = hora;

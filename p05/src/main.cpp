@@ -49,8 +49,12 @@ int main() {
       trim(tmp);
       trim(nombre);
 
-      auto temp = CFicha{nombre, edad, hh, mm, ss, tmp};
-      ficha = temp;
+      try {
+        auto temp = CFicha{nombre, edad, hh, mm, ss, tmp};
+        ficha = temp;
+      } catch (exception &e) {
+        cout << e.what() << endl;
+      }
 
       delete[] buffer;
       break;
