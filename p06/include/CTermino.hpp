@@ -28,7 +28,7 @@ public:
 
   // Getters/Setters
   inline i32 GetCoef() const { return this->monomio.GetCoef(); }
-  inline u32 GetExp() const { return this->monomio.GetCoef(); }
+  inline u32 GetExp() const { return this->monomio.GetExp(); }
   inline CMonomio GetMono() const { return this->monomio; }
   inline CTermino* GetNext() const { return this->next; }
 

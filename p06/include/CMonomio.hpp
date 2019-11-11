@@ -11,7 +11,7 @@ private:
   u32 exp;
 
 public:
-  CMonomio(u32 dCoef = 0, i32 nExp = 0);
+  CMonomio(i32 dCoef = 0, u32 nExp = 0);
 
   inline i32 GetCoef() const { return this->coef; }
   inline u32 GetExp() const { return this->exp; }
@@ -20,6 +20,12 @@ public:
   inline void SetExp(u32 dExp) { this->exp = dExp; };
 
   CMonomio operator-() const { return CMonomio(-this->coef, this->exp); }
+
+  bool operator<(CMonomio const &op) const;
+  bool operator>(CMonomio const &op) const;
+
+  friend CMonomio operator*(CMonomio a, CMonomio b);
+  i32 operator()(i32 val);
 };
 
 ostream &operator<<(ostream &os, const CMonomio &Mono);
