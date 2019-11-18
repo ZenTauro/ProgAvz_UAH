@@ -27,17 +27,17 @@ int main() {
   Z << -m2 << -m3 << -m4 << -m3;
   N << m2 << m3 << m4 << m4;
 
-  cout << "P = " << P << endl
-       << "Q = " << Q << endl
-       << "R = " << R << endl
-       << "S = " << S << endl
-       << "T = " << T << endl
-       << "U = " << U << endl
-       << "V = " << V << endl
-       << "W = " << W << endl
-       << "X = " << X << endl
-       << "Y = " << Y << endl
-       << "Z = " << Z << endl
+  cout << "P = " << P << '\n'
+       << "Q = " << Q << '\n'
+       << "R = " << R << '\n'
+       << "S = " << S << '\n'
+       << "T = " << T << '\n'
+       << "U = " << U << '\n'
+       << "V = " << V << '\n'
+       << "W = " << W << '\n'
+       << "X = " << X << '\n'
+       << "Y = " << Y << '\n'
+       << "Z = " << Z << '\n'
        << "N = " << N << endl;
 
   cout << "A = P (Constructor Copia) \n";

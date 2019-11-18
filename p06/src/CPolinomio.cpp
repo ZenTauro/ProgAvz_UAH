@@ -119,12 +119,15 @@ void CPolinomio::operator=(const CPolinomio &poli) noexcept {
 }
 
 CPolinomio &CPolinomio::operator<<(const CMonomio &mono) {
-  if (mono.GetCoef() == 0)
-    return *this;
-
   auto temp = new CTermino{mono};
   auto curr_pol = this->head;
   auto prev_pol = this->head;
+
+  if (mono.GetCoef() == 0) {
+    delete temp;
+    return *this;
+  }
+
 
   if (curr_pol == NULL) {
     this->head = temp;
@@ -138,6 +141,10 @@ CPolinomio &CPolinomio::operator<<(const CMonomio &mono) {
   }
   if (prev_pol->GetExp() == temp->GetExp()) {
     prev_pol->SetCoef(prev_pol->GetCoef() + temp->GetCoef());
+    if (prev_pol->GetCoef() == 0){
+      this->head = prev_pol->GetNext();
+      delete prev_pol;
+    }
 
     delete temp;
     return *this;
