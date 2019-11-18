@@ -21,7 +21,7 @@ public:
   CPolinomio(CMonomio &mon);
   CPolinomio(vector<CMonomio> &monomios);
   ~CPolinomio();
-  CPolinomio(i32 c = 0, u32 e = 0);
+  CPolinomio(i32 c = 0, u32 e = 0, CTermino *next = NULL);
 
   CPolinomio &operator<<(const CMonomio &mono);
   CPolinomio &operator<<(const CPolinomio &poli);

@@ -5,7 +5,10 @@
 
 using namespace std;
 
-CMonomio::CMonomio(i32 dCoef, u32 nExp) {}
+CMonomio::CMonomio(i32 dCoef, u32 nExp) {
+  this->SetCoef(dCoef);
+  this->SetExp(nExp);
+}
 
 i32 CMonomio::operator()(i32 val) {
   return this->coef * pow(val, this->exp);

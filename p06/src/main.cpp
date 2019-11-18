@@ -11,8 +11,8 @@ auto pause = utils::CUtils::pause;
 int main() {
   cout << "Hello world" << endl;
 
-  CPolinomio P, Q, R, S, T, U, V, W, X, Y, Z, N, G;
-  CMonomio m1, m2(2, 2), m3(3, 3), m4(4, 4), m5(3, 2), m6(2, 1);
+  CPolinomio P{}, Q{}, R{}, S{}, T{}, U{}, V{}, W{}, X{}, Y{}, Z{}, N{}, G{};
+  CMonomio m1{}, m2{2, 2}, m3{3, 3}, m4{4, 4}, m5{3, 2}, m6{2, 1};
 
   P << m1 << m2 << -m4 << m3;
   Q << m4 << m1 << m2 << -m3;
@@ -40,110 +40,110 @@ int main() {
        << "Z = " << Z << endl
        << "N = " << N << endl;
 
-  std::cout << "A = P (Constructor Copia) \n";
+  cout << "A = P (Constructor Copia) \n";
   CPolinomio A = P;
-  std::cout << "\tA = " << A << '\n';
-  pause();
+  cout << "\tA = " << A << '\n';
+  // pause();
 
   CPolinomio B;
-  std::cout << "\nB = Q (Operador de asignacion)\n";
+  cout << "\nB = Q (Operador de asignacion)\n";
   B = Q;
-  std::cout << "\tB = " << B << '\n';
-  pause();
+  cout << "\tB = " << B << '\n';
+  // pause();
 
-  std::cout << "\nP = P (Evitar auto-asignacion)\n";
+  cout << "\nP = P (Evitar auto-asignacion)\n";
   P = P;
-  std::cout << "\tP = " << P << '\n';
-  pause();
+  cout << "\tP = " << P << '\n';
+  // pause();
 
-  std::cout << "\nProbando el constructor con un coef. y un exp. \n";
+  cout << "\nProbando el constructor con un coef. y un exp. \n";
   CPolinomio C(2.5), D(2.5, 5);
-  std::cout << "\tC = " << C << '\n';
-  std::cout << "\tD = " << D << '\n';
-  pause();
+  cout << "\tC = " << C << '\n';
+  cout << "\tD = " << D << '\n';
+  // pause();
 
-  std::cout << "\nProbando el constructor con un monomio. \n";
+  cout << "\nProbando el constructor con un monomio. \n";
   CMonomio mon(4, 4);
   CPolinomio E(mon);
-  std::cout << "\tE = " << E << '\n';
-  pause();
+  cout << "\tE = " << E << '\n';
+  // pause();
 
-  std::cout << "\nObteniendo el grado del polinomio \n";
+  cout << "\nObteniendo el grado del polinomio \n";
   int mayor = U;
-  std::cout << "\tEl grado de U es: " << mayor << "\n";
-  pause();
+  cout << "\tEl grado de U es: " << mayor << "\n";
+  // pause();
 
-  std::cout << "\nProbando el constructor con vector <CMonomio> \n";
-  std::vector<CMonomio> monomio_vector{ m4,m3,m2 };
+  cout << "\nProbando el constructor con vector <CMonomio> \n";
+  vector<CMonomio> monomio_vector{m4, m3, m2};
   CPolinomio F(monomio_vector);
-  std::cout << "\tF = " << F << '\n';
-  pause();
+  cout << "\tF = " << F << '\n';
+  // pause();
 
-  std::cout << "\nProbando el operador > \n";
-  std::cout << "\tP = " << P << '\n';
-  std::cout << "\tU = " << U << '\n';
+  cout << "\nProbando el operador > \n";
+  cout << "\tP = " << P << '\n';
+  cout << "\tU = " << U << '\n';
   bool mayorp = P > U;
   if (mayorp == true)
-    std::cout << "\tP es de mayor grado que U\n";
+    cout << "\tP es de mayor grado que U\n";
   else
-    std::cout << "\tU es de mayor grado que P\n";
-  pause();
+    cout << "\tU es de mayor grado que P\n";
+  // pause();
 
-  std::cout << "\nProbando el operador == \n";
-  std::cout << "\tP = " << P << '\n';
-  std::cout << "\tQ = " << Q << '\n';
+  cout << "\nProbando el operador == \n";
+  cout << "\tP = " << P << '\n';
+  cout << "\tQ = " << Q << '\n';
   bool igual = P == Q;
   if (igual == true)
-    std::cout << "\tP es de igual grado que Q\n";
+    cout << "\tP es de igual grado que Q\n";
   else
-    std::cout << "\tP es de distinto grado que Q\n";
-  pause();
+    cout << "\tP es de distinto grado que Q\n";
+  // pause();
 
-  std::cout << "\nProbando el operador - unario \n";
-  std::cout << "\tQ = " << Q << '\n';
-  std::cout << "\t-Q = " << -Q << '\n';
-  pause();
+  cout << "\nProbando el operador - unario \n";
+  cout << "\tQ = " << Q << '\n';
+  cout << "\t-Q = " << -Q << '\n';
+  // pause();
 
-  std::cout << "\nProbando el operador + \n";
-  std::cout << "\tN = " << N << '\n';
-  std::cout << "\tU = " << U << '\n';
-  std::cout << "\tN + U : " << N + U << '\n';
-  pause();
+  cout << "\nProbando el operador + \n";
+  cout << "\tN = " << N << '\n';
+  cout << "\tU = " << U << '\n';
+  cout << "\tN + U : " << N + U << '\n';
+  // pause();
 
-  std::cout << "\nProbando los operadores  - y +=\n";
-  std::cout << "\tR = " << R << '\n';
-  std::cout << "\tS = " << S << '\n';
-  std::cout << "\tR - S : " << R - S << '\n';
-  std::cout << "\tR += S : " << (R += S) << '\n';
-  pause();
+  cout << "\nProbando los operadores  - y +=\n";
+  cout << "\tR = " << R << '\n';
+  cout << "\tS = " << S << '\n';
+  cout << "\tR - S : " << R - S << '\n';
+  cout << "\tR += S : " << (R += S) << '\n';
+  // pause();
 
-  std::cout << "\nProbando el operador -= \n";
-  std::cout << "\tN = " << N << '\n';
-  std::cout << "\tY = " << Y << '\n';
-  std::cout << "\tN -= Y : " << (N -= Y) << '\n';
-  pause();
+  cout << "\nProbando el operador -= \n";
+  cout << "\tN = " << N << '\n';
+  cout << "\tY = " << Y << '\n';
+  cout << "\tN -= Y : " << (N -= Y) << '\n';
+  // pause();
 
-  std::cout << "\nProbando el operador [] \n";
-  std::cout << "\tPolinomio P= " << P << '\n';
-  std::cout << "\tCoeficiente de P[4]: " << P[4] << '\n';
-  pause();
+  cout << "\nProbando el operador [] \n";
+  cout << "\tPolinomio P= " << P << '\n';
+  cout << "\tCoeficiente de P[4]: " << P[4] << '\n';
+  // pause();
 
-  std::cout << "\nProbando el operador () \n";
+  cout << "\nProbando el operador () \n";
   G << m5 << -m6;
-  std::cout << "\tPolinomio G: " << G << " , G(0.5) = " << G(0.5) << '\n';
-  pause();
+  cout << "\tPolinomio G: " << G << " , G(0.5) = " << G(0.5) << '\n';
+  // pause();
 
-  std::cout << "\nProbando el operador * \n";
-  std::cout << "\tQ = " << Q << '\n';
-  std::cout << "\tS = " << S << '\n';
-  std::cout << "\tQ * S : " << Q * S << '\n';
-  pause();
+  cout << "\nProbando el operador * \n";
+  cout << "\tQ = " << Q << '\n';
+  cout << "\tS = " << S << '\n';
+  cout << "\tQ * S : " << Q * S << '\n';
+  // pause();
 
-  std::cout << "\nProbando el operador *= \n";
-  std::cout << "\tP = " << P << '\n';
-  std::cout << "\tQ = " << Q << '\n';
-  std::cout << "\tP *= Q : " << (P *= Q) << '\n';
-  pause();
+  cout << "\nProbando el operador *= \n";
+  cout << "\tP = " << P << '\n';
+  cout << "\tQ = " << Q << '\n';
+  cout << "\tP *= Q : " << (P *= Q) << '\n';
+  // pause();
 
   return 0;
 }

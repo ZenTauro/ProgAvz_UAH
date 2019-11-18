@@ -16,13 +16,20 @@ public:
    * El comportamiento es exactamente el mismo que un const CMonomio&
    * pero nos evitamos una indireccion
    */
-  inline CTermino(const CMonomio& monomio) {};
+  inline CTermino(const CMonomio& monomio) {
+    this->SetMono(monomio);
+    this->SetNext(NULL);
+  };
 
   /**
    * Construimos el objecto a partir de un coeficiente, exponente y el
    * siguiente nodo, todos inicializados a 0 por defecto.
    */
-  inline CTermino(i32 coef=0, u32 exp=0, CTermino *next=NULL);
+  inline CTermino(i32 coef=0, u32 exp=0, CTermino *next=NULL) {
+    this->SetCoef(coef);
+    this->SetExp(exp);
+    this->SetNext(next);
+  };
 
   inline CTermino(CTermino &term, CTermino *next=NULL);
 

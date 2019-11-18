@@ -6,16 +6,26 @@
 #include <vector>
 
 CPolinomio::CPolinomio(vector<CMonomio> &monomios) {
+  this->head = NULL;
   for (const auto &mon : monomios) {
     (*this) << mon;
   }
 }
 
-CPolinomio::CPolinomio(i32 c, u32 e) { *this << CMonomio{c, e}; }
+CPolinomio::CPolinomio(i32 c, u32 e, CTermino *next) {
+  this->head = next;
+  *this << CMonomio{c, e};
+}
 
-CPolinomio::CPolinomio(CPolinomio const &poli) { (*this) = poli; }
+CPolinomio::CPolinomio(CPolinomio const &poli) {
+  this->head = NULL;
+  (*this) = poli;
+}
 
-CPolinomio::CPolinomio(CMonomio &mon) { *this << mon; }
+CPolinomio::CPolinomio(CMonomio &mon) {
+  this->head = NULL;
+  *this << mon;
+}
 
 CPolinomio &CPolinomio::operator<<(const CPolinomio &poli) {
   auto next = poli.head;
@@ -30,7 +40,7 @@ CPolinomio &CPolinomio::operator<<(const CPolinomio &poli) {
 }
 
 bool CPolinomio::operator>(const CPolinomio &poli) const {
-  return this->head < poli.head;
+  return this->head > poli.head;
 }
 
 bool CPolinomio::operator<(const CPolinomio &poli) const {
@@ -53,13 +63,13 @@ CPolinomio &operator-(CPolinomio &self, CPolinomio &other) {
 }
 
 CPolinomio &operator+(CPolinomio &self, CPolinomio &other) {
-  return self << other;
+  return self.operator<<(other);
 }
 
 CPolinomio operator*(CPolinomio &self, CPolinomio &other) {
   auto next_1 = self.head;
   auto next_2 = other.head;
-  CPolinomio temp;
+  auto temp = CPolinomio{};
 
   while (next_1 != NULL) {
     while (next_2 != NULL) {
@@ -73,35 +83,32 @@ CPolinomio operator*(CPolinomio &self, CPolinomio &other) {
   return temp;
 }
 
-CPolinomio &operator-=(CPolinomio &one, CPolinomio &two) {
-  one = -two;
-
-  return one;
-}
+CPolinomio &operator-=(CPolinomio &one, CPolinomio &two) { return one << -two; }
 
 CPolinomio &CPolinomio::operator+=(CPolinomio &poli) noexcept {
-  CPolinomio temp = *this;
-
-  return temp << poli;
+  return *this << poli;
 }
 
 CPolinomio &CPolinomio::operator*=(CPolinomio &two) noexcept {
-  *this = *this * two;
+  auto temp = *this * two;
+  this->head = temp.head;
+  temp.head = NULL;
 
   return *this;
 }
 
 CPolinomio &CPolinomio::operator-=(CPolinomio &poli) noexcept {
-  CPolinomio temp = *this;
-
-  return temp << -poli;
+  return ((*this) << -poli);
 }
 
 void CPolinomio::operator=(const CPolinomio &poli) noexcept {
   auto next_mon = poli.head;
 
-  if (this == &poli)
+  if (this == &poli) {
+    cout << "attempting to auto assign" << endl;
+
     return;
+  }
 
   // We first check if there is data in the datastructure, if there is
   // we proceed to free it to avoid memory leaks.
@@ -115,37 +122,61 @@ CPolinomio &CPolinomio::operator<<(const CMonomio &mono) {
   if (mono.GetCoef() == 0)
     return *this;
 
-  auto temp = new CTermino{CMonomio{mono}};
-  auto next_pol = this->head;
+  auto temp = new CTermino{mono};
+  auto curr_pol = this->head;
   auto prev_pol = this->head;
-  if (next_pol == NULL) {
+
+  if (curr_pol == NULL) {
     this->head = temp;
+    return *this;
   }
-  next_pol = prev_pol->GetNext();
+  if (prev_pol->GetExp() < temp->GetExp()) {
+    temp->SetNext(prev_pol);
+    this->head = temp;
+
+    return *this;
+  }
+  if (prev_pol->GetExp() == temp->GetExp()) {
+    prev_pol->SetCoef(prev_pol->GetCoef() + temp->GetCoef());
+
+    delete temp;
+    return *this;
+  }
+
+  curr_pol = prev_pol->GetNext();
 
   while (true) {
-    if (next_pol != NULL) {
-      if (next_pol->GetExp() == temp->GetExp()) {
-        auto coef = temp->GetCoef() + next_pol->GetCoef();
+    // Check whether there is an element
+    if (curr_pol != NULL) {
+      // Check if the exponent is the same, if so, add them together
+      if (curr_pol->GetExp() == temp->GetExp()) {
+        auto coef = temp->GetCoef() + curr_pol->GetCoef();
         if (coef == 0) {
-          prev_pol->SetNext(next_pol->GetNext());
-          delete next_pol;
+          prev_pol->SetNext(curr_pol->GetNext());
+          delete curr_pol;
+          delete temp;
 
           break;
         }
-        next_pol->SetCoef(coef);
+        curr_pol->SetCoef(coef);
+        delete temp;
 
         break;
       }
-      if (temp->GetExp() > next_pol->GetExp()) {
-        temp->SetNext(next_pol);
+      // Check if the current element is lower. If so, put it behind
+      // the new element and add the new to the list.
+      if (temp->GetExp() > curr_pol->GetExp()) {
+        temp->SetNext(curr_pol);
         prev_pol->SetNext(temp);
+        if (this->head == prev_pol) {
+          this->head = temp;
+        }
 
         break;
       }
-
-      prev_pol = next_pol;
-      next_pol = next_pol->GetNext();
+      // We didn't find any terminating condition, compute the next one.
+      prev_pol = curr_pol;
+      curr_pol = curr_pol->GetNext();
       continue;
     }
 
@@ -167,6 +198,8 @@ CPolinomio::~CPolinomio() {
     delete to_free;
     to_free = next;
   }
+
+  this->head = NULL;
 }
 
 i32 CPolinomio::operator[](u32 idx) {
@@ -200,7 +233,12 @@ ostream &operator<<(ostream &os, const CPolinomio &poli) {
   auto next = poli.head;
 
   while (next != NULL) {
-    cout << next;
+    if (next == next->GetNext()) {
+      cout << "\nBucle en la lista, esto no deberia de ocurrir" << endl;
+      break;
+    }
+
+    cout << next->GetMono();
     next = next->GetNext();
   }
 
