@@ -176,10 +176,6 @@ CPolinomio &CPolinomio::operator<<(const CMonomio &mono) {
       if (temp->GetExp() > curr_pol->GetExp()) {
         temp->SetNext(curr_pol);
         prev_pol->SetNext(temp);
-        if (this->head == prev_pol) {
-          this->head = temp;
-          delete prev_pol;
-        }
 
         break;
       }
