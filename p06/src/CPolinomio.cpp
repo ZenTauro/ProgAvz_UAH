@@ -91,6 +91,7 @@ CPolinomio &CPolinomio::operator+=(CPolinomio &poli) noexcept {
 
 CPolinomio &CPolinomio::operator*=(CPolinomio &two) noexcept {
   auto temp = *this * two;
+  this->~CPolinomio();
   this->head = temp.head;
   temp.head = NULL;
 
@@ -177,6 +178,7 @@ CPolinomio &CPolinomio::operator<<(const CMonomio &mono) {
         prev_pol->SetNext(temp);
         if (this->head == prev_pol) {
           this->head = temp;
+          delete prev_pol;
         }
 
         break;
