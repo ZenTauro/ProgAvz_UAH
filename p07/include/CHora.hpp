@@ -58,6 +58,7 @@ public:
   void Destruir();
 
   void operator=(CHora&);
+  bool operator==(const CHora &) const;
 
   CHora( const CHora &obj );
   CHora(int hora = 0, int min = 0, int seg = 0, const char * = "24 HORAS");

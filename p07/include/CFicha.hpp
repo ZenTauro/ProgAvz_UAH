@@ -23,6 +23,8 @@ public:
                     const string &sFormato);
   CHora ObtenerNacio() const;
   void operator=(CFicha &obj);
+
+  virtual void show();
 };
 
 void VisualizarHora(CFicha &ficha);

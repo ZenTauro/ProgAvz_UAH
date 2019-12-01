@@ -62,6 +62,10 @@ void VisualizarHora(CFicha& ficha) {
   delete[] fmt;
 }
 
+void CFicha::show() {
+  cout << this;
+}
+
 void CFicha::operator=(CFicha &obj) {
   this->m_nEdad = obj.m_nEdad;
   this->m_sNombre = obj.m_sNombre;

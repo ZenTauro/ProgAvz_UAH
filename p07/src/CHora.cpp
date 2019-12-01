@@ -111,6 +111,15 @@ void CHora::operator=(CHora &obj){
   this->m_pszFormato = obj.m_pszFormato;
 }
 
+bool CHora::operator==(const CHora &hora) const {
+  if (this->m_nHoras == hora.m_nHoras &&
+      this->m_nMinutos == hora.m_nMinutos &&
+      this->m_nSegundos == hora.m_nSegundos) {
+    return true;
+  }
+  return false;
+}
+
 CHora::~CHora() {}
 
 CHora::CHora(int hora, int min, int seg, const char *formato) {
