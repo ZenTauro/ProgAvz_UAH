@@ -7,17 +7,20 @@
 #include <iostream>
 #include <vector>
 
-TEST(CRegistroDiario, Constructors) {
+TEST(CRegistroDiario, Constructors1) {
   EXPECT_THROW({ CRegistroDiario{-1}; }, std::invalid_argument);
   EXPECT_THROW({ CRegistroDiario{0}; }, std::invalid_argument);
   EXPECT_NO_THROW({ CRegistroDiario{}; });
 
-  auto reg1 = CRegistroDiario{20},
-       reg2 = CRegistroDiario{};
+  auto reg1 = CRegistroDiario{20};
 
   EXPECT_EQ(reg1.GetMaxSize(), 20);
-  EXPECT_EQ(reg2.GetMaxSize(), DEFAULT_REGSIZE);
   EXPECT_EQ(reg1.Length(), 0);
+}
+
+TEST(CRegistroDiario, Constructors2) {
+  auto reg2 = CRegistroDiario{};
+  EXPECT_EQ(reg2.GetMaxSize(), DEFAULT_REGSIZE);
   EXPECT_EQ(reg2.Length(), 0);
 }
 
