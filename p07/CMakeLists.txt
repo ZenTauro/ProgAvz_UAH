@@ -6,6 +6,9 @@ set (CMAKE_CXX_STANDARD 17)
 project(practica7)
 set(BINARY ${CMAKE_PROJECT_NAME})
 
+# ASCII Scape sequence
+string(ASCII 27 esc)
+
 # Enable ccache by default and as early as possible because project() performs
 # checks on the compiler
 option(ENABLE_CCACHE "Enable ccache support" ON)
@@ -13,7 +16,6 @@ if(ENABLE_CCACHE)
   message(STATUS "Trying to enable ccache")
   find_program(BIN_CCACHE ccache)
 
-  string(ASCII 27 esc)
   if(NOT BIN_CCACHE)
     message(STATUS "${esc}[33mCouldn't locate ccache, disabling ccache...${esc}[0m")
   else()
@@ -25,10 +27,18 @@ endif()
 
 option(PACKAGE_TESTS "Build the tests" ON)
 if(PACKAGE_TESTS)
+  message(STATUS "${esc}[32mBuilding tests${esc}[0m")
   find_package(GTest)
   enable_testing()
   add_subdirectory(test)
 endif()
+
+option(WITH_VECTORS "Build the project using a vector rather than an array" OFF)
+if(WITH_VECTORS)
+  message(STATUS "${esc}[32mBuilding part 2 -- Using vector instead of CFicha *${esc}[0m")
+  add_definitions(-DWITH_VECTORS)
+endif()
+
 
 ###############################################################################
 ## file globbing ##############################################################

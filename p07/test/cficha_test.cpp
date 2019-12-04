@@ -47,3 +47,9 @@ TEST(CCliente, Arg4Constructor) {
   EXPECT_EQ(cliente.GetDNI(), string{"2341529M"});
   EXPECT_EQ(cliente.ObtenerNacio(), CHora{11});
 }
+
+TEST(CCliente, Show) {
+  auto cliente = CCliente{"Pepe", 43, CHora{11}, "2341529M"};
+
+  EXPECT_NO_THROW(cliente.show());
+}

@@ -63,7 +63,7 @@ void VisualizarHora(CFicha& ficha) {
 }
 
 void CFicha::show() {
-  cout << this;
+  cout << "Calling virtual method on base class obj: " << this << " " << this->ObtenerNombre() << endl;
 }
 
 void CFicha::operator=(CFicha &obj) {

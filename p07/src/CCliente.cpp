@@ -17,3 +17,13 @@ CCliente::CCliente(string name, int age, CHora hora, string dni) {
 
   delete[] formato;
 }
+
+ostream &operator<<(ostream &os, const CCliente &cliente) {
+  os << "Cliente: " << cliente.ObtenerNombre() << " " << cliente.GetDNI();
+
+  return os;
+}
+
+void CCliente::show() {
+  cout << *this << endl;
+}

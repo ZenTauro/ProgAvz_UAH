@@ -15,16 +15,16 @@ public:
   CFicha(const string &sNombre = "", int nEdad = 0, int nHoras = 12, int nMinutos = 0,
          int nSegundos = 0, const string &sFormato = "AM");
 
-  void AsignarNombre(const string &sNombre);
-  string ObtenerNombre() const;
-  void AsignarEdad(int nEdad);
-  int ObtenerEdad() const;
-  bool AsignarNacio(int nHoras, int nMinutos, int nSegundos,
+  virtual void AsignarNombre(const string &sNombre);
+  virtual string ObtenerNombre() const;
+  virtual void AsignarEdad(int nEdad);
+  virtual int ObtenerEdad() const;
+  virtual bool AsignarNacio(int nHoras, int nMinutos, int nSegundos,
                     const string &sFormato);
-  CHora ObtenerNacio() const;
-  void operator=(CFicha &obj);
+  virtual CHora ObtenerNacio() const;
+  virtual void operator=(CFicha &obj);
 
-  virtual void show();
+  virtual void show() = 0;
 };
 
 void VisualizarHora(CFicha &ficha);
