@@ -25,8 +25,10 @@ public:
   inline uint32 GetMaxSize() { return this->nElementosMax; };
   inline uint32 Length() { return this->length; };
 
-  CRegistroDiario operator=(CRegistroDiario const &from);
+  CRegistroDiario& operator=(CRegistroDiario const &from);
   CRegistroDiario Add(CFicha &per);
+
+  const CFicha& operator[](uint64_t i);
 
   ~CRegistroDiario();
 };

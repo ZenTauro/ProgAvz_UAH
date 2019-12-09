@@ -7,10 +7,15 @@
 
 using namespace std;
 
-CRegistroDiario CRegistroDiario::operator=(CRegistroDiario const &from) {
+CRegistroDiario& CRegistroDiario::operator=(CRegistroDiario const &from) {
+  if(this == &from) {
+    return *this;
+  }
   this->nElementosMax = from.nElementosMax;
+  this->length = from.length;
 
 #if WITH_VECTORS
+  this->personas = vector<CFicha *>{};
   for(auto& x : from.personas) {
     this->personas.push_back(x->Clone());
   }
@@ -63,4 +68,11 @@ CRegistroDiario CRegistroDiario::Add(CFicha &per) {
 #endif
 
   return *this;
+}
+
+const CFicha &CRegistroDiario::operator[](uint64_t i) {
+#if WITH_VECTORS
+  return *this->personas[i];
+#else
+#endif
 }
