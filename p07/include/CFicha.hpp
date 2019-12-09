@@ -25,6 +25,9 @@ public:
   virtual void operator=(CFicha &obj);
 
   virtual void show() = 0;
+  virtual CFicha* Clone() = 0;
+
+  virtual ~CFicha();
 };
 
 void VisualizarHora(CFicha &ficha);

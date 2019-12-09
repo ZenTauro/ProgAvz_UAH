@@ -27,3 +27,12 @@ ostream &operator<<(ostream &os, const CCliente &cliente) {
 void CCliente::show() {
   cout << *this << endl;
 }
+
+CFicha * CCliente::Clone() {
+  auto copy = new CCliente{*this};
+  return copy;
+}
+
+CCliente::~CCliente() {
+  cout << "Destruction CCliente instance\n";
+}

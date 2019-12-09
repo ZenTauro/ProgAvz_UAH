@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class CEmpleado : CFicha {
+class CEmpleado : public CFicha {
 private:
   string m_sCategoria;
   uint32 m_nAntiguedad;
@@ -31,7 +31,10 @@ public:
 
   friend ostream &operator<<(ostream &os, const CEmpleado &emp);
 
-  void show();
+  void show() override;
+  CFicha* Clone() override;
+
+  ~CEmpleado() override;
 };
 
 ostream &operator<<(ostream &os, const CEmpleado &emp);

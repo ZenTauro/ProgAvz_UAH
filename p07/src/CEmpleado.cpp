@@ -31,3 +31,12 @@ operator<<(ostream &os, const CEmpleado &emp) {
 void CEmpleado::show() {
   cout << *this << "\n";
 }
+
+CFicha *CEmpleado::Clone() {
+  auto copy = new CEmpleado{*this};
+  return copy;
+}
+
+CEmpleado::~CEmpleado() {
+  cout << "Destruction CEmpleado instance\n";
+}

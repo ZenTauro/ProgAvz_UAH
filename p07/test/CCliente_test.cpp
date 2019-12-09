@@ -53,3 +53,13 @@ TEST(CCliente, Show) {
 
   EXPECT_NO_THROW(cliente.show());
 }
+
+TEST(CCliente, Clone) {
+  auto cliente1 = new CCliente{"Pepe", 43, CHora{11}, "2341529M"};
+  auto cliente2 = cliente1->Clone();
+
+  EXPECT_EQ(cliente1->GetDNI(), dynamic_cast<CCliente*>(cliente2)->GetDNI());
+
+  delete cliente1;
+  delete cliente2;
+}

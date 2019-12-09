@@ -21,7 +21,9 @@ public:
 
   //
   void show() override;
-};
+  CFicha *Clone() override;
 
+  ~CCliente() override;
+};
 
 ostream &operator<<(ostream &os, const CCliente &Cliente);

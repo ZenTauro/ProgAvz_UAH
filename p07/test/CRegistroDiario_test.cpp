@@ -31,4 +31,25 @@ TEST(CRegistroDiario, Add) {
 
   reg.Add(client);
   EXPECT_EQ(reg.Length(), 1);
+  reg.Add(emp);
+  EXPECT_EQ(reg.Length(), 2);
+}
+
+TEST(CRegistroDiario, Add) {
+  auto reg = CRegistroDiario{};
+  auto emp1 = CEmpleado{"Pepe"};
+  auto client1 = CCliente{"Juan"};
+  auto emp2 = CEmpleado{"Alisa"};
+  auto client2 = CCliente{"Tati"};
+
+  reg.Add(client1);
+  reg.Add(emp1);
+  reg.Add(client2);
+  reg.Add(emp2);
+
+  auto reg2 = reg;
+
+  for(uint8_t i=0; i<reg.Length(); i++) {
+    EXPECT_EQ(reg, val2);
+  }
 }

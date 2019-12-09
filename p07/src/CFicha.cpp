@@ -71,3 +71,5 @@ void CFicha::operator=(CFicha &obj) {
   this->m_sNombre = obj.m_sNombre;
   this->m_horaNacio = obj.m_horaNacio;
 }
+
+CFicha::~CFicha() {}

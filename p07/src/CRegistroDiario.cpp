@@ -11,7 +11,9 @@ CRegistroDiario CRegistroDiario::operator=(CRegistroDiario const &from) {
   this->nElementosMax = from.nElementosMax;
 
 #if WITH_VECTORS
-  this->personas = from.personas;
+  for(auto& x : from.personas) {
+    this->personas.push_back(x->Clone());
+  }
 #else
   this->personas = new CFicha*[nElementosMax]();
   for (uint32 i=0; i<nElementosMax; i++) {
