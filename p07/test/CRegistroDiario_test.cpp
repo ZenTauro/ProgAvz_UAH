@@ -106,4 +106,6 @@ TEST(CRegistroDiario, FindByName) {
 
   EXPECT_EQ(reg.FindByName("Tati").ObtenerNombre(), client2.ObtenerNombre());
   EXPECT_EQ(reg.FindByName("Tati").ObtenerEdad(), client2.ObtenerEdad());
+
+  EXPECT_THROW(reg.FindByName("Felicidad"), invalid_argument);
 }

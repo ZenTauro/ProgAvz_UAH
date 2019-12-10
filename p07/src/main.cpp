@@ -105,7 +105,12 @@ int main() {
       cout << "Enter name: ";
       CUtils::LeerString(name);
 
-      reg.FindByName(name).show();
+      try {
+        reg.FindByName(name).show();
+      } catch (invalid_argument &e) {
+        cout << e.what() << "\n";
+      }
+
       break;
     }
 

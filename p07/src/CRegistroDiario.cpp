@@ -149,6 +149,10 @@ const CFicha & CRegistroDiario::FindByName(const string &name) const {
   }
 #endif
 
+  if(res == nullptr) {
+    throw invalid_argument("Name not found");
+  }
+
   return *res;
 }
 
