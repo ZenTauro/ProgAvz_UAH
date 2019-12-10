@@ -11,8 +11,16 @@ CRegistroDiario& CRegistroDiario::operator=(CRegistroDiario const &from) {
   if(this == &from) {
     throw invalid_argument("Trying to self assign");
   }
-#ifndef WITH_VECTORS
+#if defined WITH_VECTORS
+  for(auto &p : this->personas) {
+    delete p;
+  }
+  this->personas.clear();
+#else
   if(this->personas != nullptr) {
+    for(uint64_t i=0; i<this->length; i++) {
+      delete this->personas[i];
+    }
     delete[] this->personas;
   }
 #endif
