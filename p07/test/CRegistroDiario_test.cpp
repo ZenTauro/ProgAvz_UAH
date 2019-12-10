@@ -22,9 +22,7 @@ TEST(CRegistroDiario, Constructors2) {
   auto reg2 = CRegistroDiario{};
   EXPECT_EQ(reg2.GetMaxSize(), DEFAULT_REGSIZE);
   EXPECT_EQ(reg2.Length(), 0);
-}
-
-TEST(CRegistroDiario, Add) {
+} TEST(CRegistroDiario, Add) {
   auto reg = CRegistroDiario{};
   auto emp = CEmpleado{"Pepe"};
   auto client = CCliente{"Juan"};
@@ -60,4 +58,10 @@ TEST(CRegistroDiario, Copy) {
 
   delete reg;
   delete reg2;
+}
+
+TEST(CRegistroDiario, SelfCopy) {
+  auto reg = CRegistroDiario{};
+
+  EXPECT_THROW({reg = reg;}, std::invalid_argument);
 }

@@ -9,7 +9,7 @@ using namespace std;
 
 CRegistroDiario& CRegistroDiario::operator=(CRegistroDiario const &from) {
   if(this == &from) {
-    return *this;
+    throw invalid_argument("Trying to self assign");
   }
   this->nElementosMax = from.nElementosMax;
   this->length = from.length;
