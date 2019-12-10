@@ -63,7 +63,7 @@ add_executable(${BINARY} src/main.cpp ${objs})
 target_link_libraries(${BINARY} PUBLIC ${CMAKE_PROJECT_NAME}_lib)
 
 # Just for example add some compiler flags.
-target_compile_options(${BINARY} PUBLIC -Wall -Wfloat-conversion -pipe)
+target_compile_options(${BINARY} PUBLIC -Wall -Wextra -Wfloat-conversion -pedantic-errors -pipe)
 
 # This allows to include files relative to the root of the src directory with a <> pair
 target_include_directories(${BINARY} PUBLIC include)
