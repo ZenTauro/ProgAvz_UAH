@@ -1,6 +1,7 @@
 #include "CHora.hpp"
 #include <algorithm>
 #include <cstring>
+#include <ctime>
 #include <iostream>
 #include <string>
 
@@ -101,6 +102,22 @@ void CHora::ObtenerHora(int &nHoras, int &nMinutos, int &nSegundos,
   }
 }
 
+CHora &CHora::Now() {
+  time_t unix_now = time(0);
+  auto *now = localtime(&unix_now);
+
+  this->AsignarFormato(H24);
+  this->m_nHoras = now->tm_hour;
+  this->m_nMinutos = now->tm_min;
+  this->m_nSegundos = now->tm_sec;
+
+  return *this;
+}
+
+std::ostream & operator<<(std::ostream &os, const CHora &hora) {
+  os << hora.m_nHoras << ":" << hora.m_nMinutos << ":" << hora.m_nSegundos << " " << hora.m_pszFormato;
+  return os;
+}
 
 void CHora::operator=(const CHora &obj){
   this->m_nHoras = obj.m_nHoras;

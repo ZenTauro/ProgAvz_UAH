@@ -57,10 +57,17 @@ public:
   /// pone el puntero m_pszFormato a cero.
   void Destruir();
 
+  /// Pone el objeto a la hora actual.
+  CHora& Now();
+
   void operator=(CHora const&);
   bool operator==(const CHora &) const;
+
+  friend std::ostream &operator<<(std::ostream &os, const CHora &hora);
 
   CHora( CHora const &obj );
   CHora(int hora = 0, int min = 0, int seg = 0, const char * = "24 HORAS");
   ~CHora();
 };
+
+std::ostream &operator<<(std::ostream &os, const CHora &hora);
