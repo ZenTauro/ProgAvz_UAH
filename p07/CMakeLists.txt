@@ -50,8 +50,10 @@ endif()
 file(GLOB sources  src/*.cpp)
 file(GLOB headers  include/*.hpp)
 file(GLOB objs     obj/*.o)
-# You can use set(sources src/main.cpp) etc if you don't want to
-# use globbing to find files automatically.
+file(GLOB Main     src/main.cpp)
+# Remove the main.cpp from srcs to avoid building twice (once for library
+# another for executable)
+list(REMOVE_ITEM sources ${Main})
 
 ###############################################################################
 ## target definitions #########################################################
@@ -59,8 +61,8 @@ file(GLOB objs     obj/*.o)
 # The data is just added to the executable, because in some IDEs (QtCreator)
 # files are invisible when they are not explicitly part of the project.
 add_library(${BINARY}_lib STATIC ${sources} ${objs})
-add_executable(${BINARY} src/main.cpp ${objs})
-target_link_libraries(${BINARY} PUBLIC ${CMAKE_PROJECT_NAME}_lib)
+add_executable(${BINARY} ${Main} ${objs})
+target_link_libraries(${BINARY} PUBLIC ${BINARY}_lib)
 
 # Just for example add some compiler flags.
 target_compile_options(${BINARY} PUBLIC -Wall -Wextra -Wfloat-conversion -pedantic-errors -pipe)
