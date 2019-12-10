@@ -32,7 +32,7 @@ public:
   friend ostream &operator<<(ostream &os, const CEmpleado &emp);
 
   void show() override;
-  CFicha* Clone() override;
+  CFicha* Clone() const override;
 
   ~CEmpleado();
 };

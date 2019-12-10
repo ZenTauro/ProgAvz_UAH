@@ -63,20 +63,20 @@ CRegistroDiario::~CRegistroDiario() {
 #endif
 }
 
-bool CRegistroDiario::Add(CFicha &per) {
+bool CRegistroDiario::Add(CFicha const &per) {
   bool ret = true;
-
-  this->length++;
 
 #if defined WITH_VECTORS
   this->personas.push_back(per.Clone());
 #else
   if(this->length <= this->nElementosMax) {
-    this->personas[length - 1] = per.Clone();
+    this->personas[length] = per.Clone();
   } else {
     ret = false;
   }
 #endif
+
+  this->length++;
 
   return ret;
 }

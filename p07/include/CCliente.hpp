@@ -21,7 +21,7 @@ public:
 
   //
   void show() override;
-  CFicha *Clone() override;
+  CFicha *Clone() const override;
 
   ~CCliente();
 };

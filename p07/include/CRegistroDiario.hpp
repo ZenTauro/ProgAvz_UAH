@@ -38,7 +38,7 @@ public:
   };
 
   CRegistroDiario& operator=(CRegistroDiario const &from);
-  bool Add(CFicha &per);
+  bool Add(CFicha const &per);
   void ShowRegister();
   void ShowEmployees();
 

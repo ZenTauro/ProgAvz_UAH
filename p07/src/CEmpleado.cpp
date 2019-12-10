@@ -32,7 +32,7 @@ void CEmpleado::show() {
   cout << *this << "\n";
 }
 
-CFicha *CEmpleado::Clone() {
+CFicha *CEmpleado::Clone() const {
   auto copy = new CEmpleado{*this};
   return copy;
 }

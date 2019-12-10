@@ -28,7 +28,7 @@ void CCliente::show() {
   cout << *this << endl;
 }
 
-CFicha * CCliente::Clone() {
+CFicha * CCliente::Clone() const {
   auto copy = new CCliente{*this};
   return copy;
 }

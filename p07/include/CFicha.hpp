@@ -26,7 +26,7 @@ public:
   virtual void operator=(CFicha &obj);
 
   virtual void show() = 0;
-  virtual CFicha* Clone() = 0;
+  virtual CFicha* Clone() const = 0;
 
   virtual ~CFicha() = 0;
 };
