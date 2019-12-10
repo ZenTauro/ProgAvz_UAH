@@ -132,6 +132,26 @@ void CRegistroDiario::ShowRegister() {
 #endif
 }
 
+const CFicha & CRegistroDiario::FindByName(const string &name) const {
+  CFicha*res = nullptr;
+
+#if defined WITH_VECTORS
+  for (auto &ficha : this->personas) {
+    if (ficha->ObtenerNombre() == name) {
+      res = ficha;
+    }
+  }
+#else
+  for (uint64_t i = 0; i < this->length; i++) {
+    if (this->personas[i]->ObtenerNombre() == name) {
+      res = ficha;
+    }
+  }
+#endif
+
+  return *res;
+}
+
 void CRegistroDiario::ShowEmployees() {
 #if defined WITH_VECTORS
   for (auto &ficha : this->personas) {

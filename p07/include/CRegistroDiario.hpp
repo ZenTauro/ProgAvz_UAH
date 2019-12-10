@@ -42,7 +42,9 @@ public:
   void ShowRegister();
   void ShowEmployees();
 
-  const CFicha& operator[](uint64_t i);
+  const CFicha &FindByName(const string &) const;
+
+  const CFicha & operator[](uint64_t i);
 
   ~CRegistroDiario();
 };
