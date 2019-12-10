@@ -60,7 +60,9 @@ CRegistroDiario::~CRegistroDiario() {
 #endif
 }
 
-CRegistroDiario CRegistroDiario::Add(CFicha &per) {
+bool CRegistroDiario::Add(CFicha &per) {
+  bool ret = true;
+
   this->length++;
 
 #if WITH_VECTORS
@@ -68,12 +70,35 @@ CRegistroDiario CRegistroDiario::Add(CFicha &per) {
 #else
 #endif
 
-  return *this;
+  return ret;
 }
 
 const CFicha &CRegistroDiario::operator[](uint64_t i) {
+  if(i<0 || i >= this->length) {
+    throw out_of_range("Index out of range");
+  }
 #if WITH_VECTORS
   return *this->personas[i];
+#else
+#endif
+}
+
+void CRegistroDiario::ShowRegister() {
+#if WITH_VECTORS
+  for (auto &ficha : this->personas ) {
+    ficha->show();
+  }
+#else
+#endif
+}
+
+void CRegistroDiario::ShowEmployees() {
+#if WITH_VECTORS
+  for (auto &ficha : this->personas) {
+    if ( CRegistroDiario::EsEmpleado(*ficha) ) {
+      ficha->show();
+    }
+  }
 #else
 #endif
 }

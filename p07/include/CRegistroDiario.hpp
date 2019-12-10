@@ -1,7 +1,8 @@
 #pragma once
 
-#include "types.hpp"
+#include "CEmpleado.hpp"
 #include "CFicha.hpp"
+#include "types.hpp"
 #include <vector>
 
 using namespace std;
@@ -25,8 +26,21 @@ public:
   inline uint32 GetMaxSize() { return this->nElementosMax; };
   inline uint32 Length() { return this->length; };
 
+  static inline bool EsEmpleado(const CFicha & obj) {
+    bool ret = true;
+    try {
+      auto _dummy = dynamic_cast<const CEmpleado &>(obj);
+    } catch (bad_cast &e) {
+      ret = false;
+    }
+
+    return ret;
+  };
+
   CRegistroDiario& operator=(CRegistroDiario const &from);
-  CRegistroDiario Add(CFicha &per);
+  bool Add(CFicha &per);
+  void ShowRegister();
+  void ShowEmployees();
 
   const CFicha& operator[](uint64_t i);
 
