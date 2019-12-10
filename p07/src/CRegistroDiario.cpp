@@ -68,15 +68,15 @@ bool CRegistroDiario::Add(CFicha const &per) {
 
 #if defined WITH_VECTORS
   this->personas.push_back(per.Clone());
+  this->length++;
 #else
-  if(this->length <= this->nElementosMax) {
+  if(this->length < this->nElementosMax) {
     this->personas[length] = per.Clone();
+    this->length++;
   } else {
     ret = false;
   }
 #endif
-
-  this->length++;
 
   return ret;
 }

@@ -62,3 +62,17 @@ TEST(CRegistroDiario, SelfCopy) {
 
   EXPECT_THROW({reg = reg;}, std::invalid_argument);
 }
+
+#if defined WITH_VECTORS
+#else
+TEST(CRegistroDiario, OverflowAdd) {
+  auto reg = CRegistroDiario{1};
+  auto cli = CCliente{"juan"};
+
+  EXPECT_EQ(reg.Length(), 0);
+  EXPECT_TRUE(reg.Add(cli));
+  EXPECT_EQ(reg.Length(), 1);
+  EXPECT_FALSE(reg.Add(cli));
+  EXPECT_EQ(reg.Length(), 1);
+}
+#endif
