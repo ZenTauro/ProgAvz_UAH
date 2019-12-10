@@ -107,6 +107,8 @@ int main() {
         cout << "There is no backup yet, please, make one first\n";
       } else {
         reg = *backup;
+        delete backup;
+        backup = nullptr;
       }
 
       break;
