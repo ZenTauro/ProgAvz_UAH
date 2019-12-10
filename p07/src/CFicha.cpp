@@ -69,7 +69,9 @@ void VisualizarHora(CFicha& ficha) {
 }
 
 void CFicha::show() {
+#ifndef NDEBUG
   cout << "Calling virtual method on base class obj: " << this << " " << this->ObtenerNombre() << endl;
+#endif
 }
 
 void CFicha::operator=(CFicha &obj) {
@@ -79,5 +81,7 @@ void CFicha::operator=(CFicha &obj) {
 }
 
 CFicha::~CFicha() {
+#ifndef NDEBUG
   cout << "CFicha: " << this << endl;
+#endif
 }

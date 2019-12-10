@@ -38,5 +38,7 @@ CFicha *CEmpleado::Clone() const {
 }
 
 CEmpleado::~CEmpleado() {
+#ifndef NDEBUG
   cout << "CEmpleado: " << this << "\n";
+#endif
 }

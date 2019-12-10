@@ -38,7 +38,9 @@ CRegistroDiario::CRegistroDiario(int num) : length{0} {
     throw invalid_argument("Negative or zero size");
   }
 
+#ifndef NDEBUG
   cout << "Constructing reg: " << this << "\n";
+#endif
   this->length = 0;
 
   this->nElementosMax = num;
@@ -47,12 +49,16 @@ CRegistroDiario::CRegistroDiario(int num) : length{0} {
   this->personas.reserve(num);
 #else
   this->personas = new CFicha*[num]();
+#ifndef NDEBUG
   cout << " --- [i] Internal array located at: " << this->personas << "\n";
+#endif
 #endif
 }
 
 CRegistroDiario::CRegistroDiario(const CRegistroDiario &original) {
+#ifndef NDEBUG
   cout << "Constructing reg: " << this << "\n";
+#endif
   this->personas = nullptr;
   this->length = original.length;
   this->nElementosMax = original.nElementosMax;
@@ -62,15 +68,19 @@ CRegistroDiario::CRegistroDiario(const CRegistroDiario &original) {
 CRegistroDiario::~CRegistroDiario() {
 #if defined WITH_VECTORS
   for(auto &reg : this->personas) {
+#ifndef NDEBUG
     cout << reg << endl;
+#endif
     delete reg;
   }
 #else
   for (uint32 i=0; i< this->length; i++) {
     delete this->personas[i];
   }
+#ifndef NDEBUG
   cout << "deleting reg: " << this << "\n";
   cout << " --- [i] Deleting internal array at: " << this->personas << "\n";
+#endif
   delete[] this->personas;
 #endif
 }

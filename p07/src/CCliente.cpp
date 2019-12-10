@@ -34,5 +34,7 @@ CFicha * CCliente::Clone() const {
 }
 
 CCliente::~CCliente() {
+#ifndef NDEBUG
   cout << "CCliente: " << this << "\n";
+#endif
 }
