@@ -16,7 +16,7 @@ const char *menu1[MENU_ENTRIES] = {
   "Buscar por nombre",
   "Mostrar registro diario",
   "Mostrar empleados",
-  "Copa de seguridad del registro diario",
+  "Copia de seguridad del registro diario",
   "Restaurar copia de seguridad",
   "Salir"
 };
