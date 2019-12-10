@@ -1,4 +1,5 @@
 #include "utils.hpp"
+#include "types.hpp"
 #include <iostream>
 #include <istream>
 #include <string>
@@ -56,6 +57,34 @@ namespace utils {
 
   //   return ret;
   // }
+
+  bool CUtils::LeerUInt(uint32 *ret) {
+    uint32 a;
+    auto buffer = std::string{};
+
+    if (ret == NULL) {
+      return false;
+    }
+
+    std::cin >> buffer;
+    if (std::cin.eof()) {
+      return false;
+    }
+
+    try {
+      a = std::stoul(buffer);
+    } catch (std::exception &e) {
+      *ret = 0;
+      return false;
+    }
+
+    *ret = a;
+
+    // Clear input buffer
+    std::cin.sync();
+
+    return true;
+  }
 
   bool CUtils::LeerInt(int *ret) {
     uint8_t a;
