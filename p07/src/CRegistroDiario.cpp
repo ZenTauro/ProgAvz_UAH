@@ -11,9 +11,11 @@ CRegistroDiario& CRegistroDiario::operator=(CRegistroDiario const &from) {
   if(this == &from) {
     throw invalid_argument("Trying to self assign");
   }
+#ifndef WITH_VECTORS
   if(this->personas != nullptr) {
     delete[] this->personas;
   }
+#endif
 
   this->nElementosMax = from.nElementosMax;
   this->length = from.length;
@@ -59,7 +61,11 @@ CRegistroDiario::CRegistroDiario(const CRegistroDiario &original) {
 #ifndef NDEBUG
   cout << "Constructing reg: " << this << "\n";
 #endif
+#if defined WITH_VECTORS
+  this->personas = vector<CFicha*>{};
+#else
   this->personas = nullptr;
+#endif
   this->length = original.length;
   this->nElementosMax = original.nElementosMax;
   *this = original;
