@@ -127,7 +127,7 @@ int main() {
       CUtils::LeerString(name);
 
       try {
-        reg.FindByName(name).show();
+        reg.FindByName(name);
       } catch (invalid_argument &e) {
         cout << e.what() << "\n";
       }
