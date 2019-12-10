@@ -35,18 +35,30 @@ int main() {
       string name = string{};
       cout << "Enter name: ";
       CUtils::LeerString(name);
+#ifndef NDEBUG
+      cout << "Name read: " << name << "\n";
+#endif
 
       string category = string{};
       cout << "Enter category: ";
-      CUtils::LeerString(name);
+      CUtils::LeerString(category);
+#ifndef NDEBUG
+      cout << "Category read: " << category << "\n";
+#endif
 
       uint32 seniority = 0;
       cout << "Enter seniority: ";
       CUtils::LeerUInt(&seniority);
+#ifndef NDEBUG
+      cout << "Seniority read: " << seniority << "\n";
+#endif
 
       int age = 0;
       cout << "Enter age: ";
       CUtils::LeerInt(&age);
+#ifndef NDEBUG
+      cout << "Age read: " << age << "\n";
+#endif
 
       auto empl = CEmpleado{name, category, seniority, age, CHora{}.Now()};
       reg.Add(empl);
@@ -57,14 +69,23 @@ int main() {
       string name = string{};
       cout << "Enter name: ";
       CUtils::LeerString(name);
+#ifndef NDEBUG
+      cout << "Name read: " << name << "\n";
+#endif
 
       string DNI = string{};
       cout << "Enter DNI: ";
-      CUtils::LeerString(name);
+      CUtils::LeerString(DNI);
+#ifndef NDEBUG
+      cout << "DNI read: " << DNI << "\n";
+#endif
 
       int age = 0;
       cout << "Enter age: ";
       CUtils::LeerInt(&age);
+#ifndef NDEBUG
+      cout << "Age read: " << age << "\n";
+#endif
 
       auto client = CCliente{name, age, CHora{}.Now(), DNI};
       reg.Add(client);
