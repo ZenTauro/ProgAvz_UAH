@@ -22,9 +22,13 @@ CEmpleado::CEmpleado(const string &sNombre, const string category,
   delete[] fmt;
 }
 
-ostream &
-operator<<(ostream &os, const CEmpleado &emp) {
-  os << emp.ObtenerNombre() << " " << emp.m_sCategoria << " " << emp.m_nAntiguedad;
+ostream & operator<<(ostream &os, const CEmpleado &emp) {
+  auto hora = emp.ObtenerNacio();
+
+  os << "[" << hora << "] "
+     << "Empleado: " << emp.m_sNombre << " "
+     << "Categoria: " << emp.m_sCategoria << " "
+     << "Antiguedad: " << emp.m_nAntiguedad;
   return os;
 }
 
