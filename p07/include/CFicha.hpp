@@ -14,6 +14,7 @@ private:
 public:
   CFicha(const string &sNombre = "", int nEdad = 0, int nHoras = 12, int nMinutos = 0,
          int nSegundos = 0, const string &sFormato = "AM");
+  CFicha(CFicha const &from);
 
   virtual void AsignarNombre(const string &sNombre);
   virtual string ObtenerNombre() const;
@@ -27,7 +28,7 @@ public:
   virtual void show() = 0;
   virtual CFicha* Clone() = 0;
 
-  virtual ~CFicha();
+  virtual ~CFicha() = 0;
 };
 
 void VisualizarHora(CFicha &ficha);

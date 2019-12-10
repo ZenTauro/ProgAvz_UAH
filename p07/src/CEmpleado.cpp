@@ -38,5 +38,5 @@ CFicha *CEmpleado::Clone() {
 }
 
 CEmpleado::~CEmpleado() {
-  cout << "Destruction CEmpleado instance\n";
+  cout << "CEmpleado: " << this << "\n";
 }

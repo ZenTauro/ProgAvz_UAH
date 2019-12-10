@@ -19,6 +19,12 @@ CFicha::CFicha(const string &sNombre, int nEdad, int nHoras, int nMinutos,
   this->m_horaNacio = hora;
 }
 
+CFicha::CFicha(CFicha const &from) {
+  this->m_horaNacio = CHora{from.ObtenerNacio()};
+  this->m_nEdad = from.m_nEdad;
+  this->m_sNombre = from.m_sNombre;
+}
+
 void CFicha::AsignarNombre(const string &sNombre) {
   this->m_sNombre = sNombre;
 }
@@ -73,5 +79,5 @@ void CFicha::operator=(CFicha &obj) {
 }
 
 CFicha::~CFicha() {
-  cout << "  [i] Destructing base\n";
+  cout << "CFicha: " << this << endl;
 }

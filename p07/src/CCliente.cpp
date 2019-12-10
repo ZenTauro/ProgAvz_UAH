@@ -34,5 +34,5 @@ CFicha * CCliente::Clone() {
 }
 
 CCliente::~CCliente() {
-  cout << "Destruction CCliente instance\n";
+  cout << "CCliente: " << this << "\n";
 }

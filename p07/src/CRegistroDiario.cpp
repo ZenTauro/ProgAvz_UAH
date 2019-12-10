@@ -53,6 +53,7 @@ CRegistroDiario::CRegistroDiario(const CRegistroDiario &original) {
 CRegistroDiario::~CRegistroDiario() {
 #if defined WITH_VECTORS
   for(auto &reg : this->personas) {
+    cout << reg << endl;
     delete reg;
   }
 #else
@@ -69,7 +70,7 @@ bool CRegistroDiario::Add(CFicha &per) {
   this->length++;
 
 #if defined WITH_VECTORS
-  this->personas.push_back(&per);
+  this->personas.push_back(per.Clone());
 #else
   if(this->length <= this->nElementosMax) {
     this->personas[length - 1] = &per;

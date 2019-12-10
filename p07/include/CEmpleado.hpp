@@ -34,7 +34,7 @@ public:
   void show() override;
   CFicha* Clone() override;
 
-  ~CEmpleado() override;
+  ~CEmpleado();
 };
 
 ostream &operator<<(ostream &os, const CEmpleado &emp);

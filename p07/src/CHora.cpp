@@ -102,7 +102,7 @@ void CHora::ObtenerHora(int &nHoras, int &nMinutos, int &nSegundos,
 }
 
 
-void CHora::operator=(CHora &obj){
+void CHora::operator=(const CHora &obj){
   this->m_nHoras = obj.m_nHoras;
   this->m_nMinutos = obj.m_nMinutos;
   this->m_nSegundos = obj.m_nSegundos;

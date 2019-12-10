@@ -57,10 +57,10 @@ public:
   /// pone el puntero m_pszFormato a cero.
   void Destruir();
 
-  void operator=(CHora&);
+  void operator=(CHora const&);
   bool operator==(const CHora &) const;
 
-  CHora( const CHora &obj );
+  CHora( CHora const &obj );
   CHora(int hora = 0, int min = 0, int seg = 0, const char * = "24 HORAS");
   ~CHora();
 };
