@@ -21,9 +21,8 @@ CRegistroDiario& CRegistroDiario::operator=(CRegistroDiario const &from) {
   }
 #else
   this->personas = new CFicha*[nElementosMax]();
-  for (uint32 i=0; i<nElementosMax; i++) {
-    cout << "Plz fix this" << "\n";
-    this->personas[i] = from.personas[i];
+  for (uint32 i=0; i<from.length; i++) {
+    this->personas[i] = from.personas[i]->Clone();
   }
 #endif
 
@@ -73,7 +72,7 @@ bool CRegistroDiario::Add(CFicha &per) {
   this->personas.push_back(per.Clone());
 #else
   if(this->length <= this->nElementosMax) {
-    this->personas[length - 1] = &per;
+    this->personas[length - 1] = per.Clone();
   } else {
     ret = false;
   }
