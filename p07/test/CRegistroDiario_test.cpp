@@ -50,10 +50,13 @@ TEST(CRegistroDiario, Copy) {
   reg.Add(emp2);
 
   reg2 = reg;
+  auto reg3 = reg;
 
   for(uint8_t i=0; i<reg.Length(); i++) {
     EXPECT_EQ(reg[i].ObtenerNombre(), reg2[i].ObtenerNombre());
+    EXPECT_EQ(reg[i].ObtenerNombre(), reg3[i].ObtenerNombre());
     EXPECT_NE(&(reg[i]), &(reg2[i]));
+    EXPECT_NE(&(reg[i]), &(reg3[i]));
   }
 }
 
@@ -68,11 +71,14 @@ TEST(CRegistroDiario, SelfCopy) {
 TEST(CRegistroDiario, OverflowAdd) {
   auto reg = CRegistroDiario{1};
   auto cli = CCliente{"juan"};
+  auto emp = CEmpleado{"Titi"};
 
   EXPECT_EQ(reg.Length(), 0);
   EXPECT_TRUE(reg.Add(cli));
   EXPECT_EQ(reg.Length(), 1);
   EXPECT_FALSE(reg.Add(cli));
+  EXPECT_EQ(reg.Length(), 1);
+  EXPECT_FALSE(reg.Add(emp));
   EXPECT_EQ(reg.Length(), 1);
 }
 #endif

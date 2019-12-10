@@ -11,6 +11,10 @@ CRegistroDiario& CRegistroDiario::operator=(CRegistroDiario const &from) {
   if(this == &from) {
     throw invalid_argument("Trying to self assign");
   }
+  if(this->personas != nullptr) {
+    delete[] this->personas;
+  }
+
   this->nElementosMax = from.nElementosMax;
   this->length = from.length;
 
@@ -34,6 +38,7 @@ CRegistroDiario::CRegistroDiario(int num) : length{0} {
     throw invalid_argument("Negative or zero size");
   }
 
+  cout << "Constructing reg: " << this << "\n";
   this->length = 0;
 
   this->nElementosMax = num;
@@ -42,11 +47,16 @@ CRegistroDiario::CRegistroDiario(int num) : length{0} {
   this->personas.reserve(num);
 #else
   this->personas = new CFicha*[num]();
+  cout << " --- [i] Internal array located at: " << this->personas << "\n";
 #endif
 }
 
 CRegistroDiario::CRegistroDiario(const CRegistroDiario &original) {
+  cout << "Constructing reg: " << this << "\n";
+  this->personas = nullptr;
+  this->length = original.length;
   this->nElementosMax = original.nElementosMax;
+  *this = original;
 }
 
 CRegistroDiario::~CRegistroDiario() {
@@ -59,6 +69,8 @@ CRegistroDiario::~CRegistroDiario() {
   for (uint32 i=0; i< this->length; i++) {
     delete this->personas[i];
   }
+  cout << "deleting reg: " << this << "\n";
+  cout << " --- [i] Deleting internal array at: " << this->personas << "\n";
   delete[] this->personas;
 #endif
 }
