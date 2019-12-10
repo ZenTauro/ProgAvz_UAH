@@ -36,7 +36,7 @@ endif()
 option(WITH_VECTORS "Build the project using a vector rather than an array" OFF)
 if(WITH_VECTORS)
   message(STATUS "${esc}[32mBuilding part 2 -- Using vector instead of CFicha *${esc}[0m")
-  add_definitions(-DWITH_VECTORS)
+  add_compile_definitions(WITH_VECTORS=ON)
 endif()
 
 
@@ -58,8 +58,9 @@ file(GLOB objs     obj/*.o)
 ###############################################################################
 # The data is just added to the executable, because in some IDEs (QtCreator)
 # files are invisible when they are not explicitly part of the project.
-add_executable(${BINARY} ${sources} ${objs})
-add_library(${BINARY}_lib SHARED ${sources} ${objs})
+add_library(${BINARY}_lib STATIC ${sources} ${objs})
+add_executable(${BINARY} src/main.cpp ${objs})
+target_link_libraries(${BINARY} PUBLIC ${CMAKE_PROJECT_NAME}_lib)
 
 # Just for example add some compiler flags.
 target_compile_options(${BINARY} PUBLIC -Wall -Wfloat-conversion -pipe)

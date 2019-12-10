@@ -72,4 +72,6 @@ void CFicha::operator=(CFicha &obj) {
   this->m_horaNacio = obj.m_horaNacio;
 }
 
-CFicha::~CFicha() {}
+CFicha::~CFicha() {
+  cout << "  [i] Destructing base\n";
+}

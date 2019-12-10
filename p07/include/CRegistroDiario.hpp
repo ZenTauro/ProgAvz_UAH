@@ -13,7 +13,7 @@ class CRegistroDiario {
 private:
   uint32 nElementosMax;
   uint32 length;
-#if WITH_VECTORS
+#if defined WITH_VECTORS
   vector<CFicha *> personas;
 #else
   CFicha** personas;

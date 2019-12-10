@@ -4,3 +4,8 @@ set(SOURCES ${TEST_SOURCES})
 add_executable(${BINARY} ${TEST_SOURCES})
 add_test(NAME ${BINARY} COMMAND ${BINARY})
 target_link_libraries(${BINARY} PUBLIC ${CMAKE_PROJECT_NAME}_lib gtest)
+
+if(WITH_VECTORS)
+  message(STATUS "${esc}[32mBuilding part 2 -- Using vector instead of CFicha *${esc}[0m")
+  add_compile_definitions(WITH_VECTORS=ON)
+endif()

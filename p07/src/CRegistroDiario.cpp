@@ -14,7 +14,7 @@ CRegistroDiario& CRegistroDiario::operator=(CRegistroDiario const &from) {
   this->nElementosMax = from.nElementosMax;
   this->length = from.length;
 
-#if WITH_VECTORS
+#if defined WITH_VECTORS
   this->personas = vector<CFicha *>{};
   for(auto& x : from.personas) {
     this->personas.push_back(x->Clone());
@@ -38,7 +38,7 @@ CRegistroDiario::CRegistroDiario(int num) : length{0} {
   this->length = 0;
 
   this->nElementosMax = num;
-#if WITH_VECTORS
+#if defined WITH_VECTORS
   this->personas = vector<CFicha*>{};
   this->personas.reserve(num);
 #else
@@ -51,9 +51,12 @@ CRegistroDiario::CRegistroDiario(const CRegistroDiario &original) {
 }
 
 CRegistroDiario::~CRegistroDiario() {
-#if WITH_VECTORS
+#if defined WITH_VECTORS
+  for(auto &reg : this->personas) {
+    delete reg;
+  }
 #else
-  for (uint32 i=0; i< this->nElementosMax; i++) {
+  for (uint32 i=0; i< this->length; i++) {
     delete this->personas[i];
   }
   delete[] this->personas;
@@ -65,9 +68,14 @@ bool CRegistroDiario::Add(CFicha &per) {
 
   this->length++;
 
-#if WITH_VECTORS
+#if defined WITH_VECTORS
   this->personas.push_back(&per);
 #else
+  if(this->length <= this->nElementosMax) {
+    this->personas[length - 1] = &per;
+  } else {
+    ret = false;
+  }
 #endif
 
   return ret;
@@ -77,28 +85,37 @@ const CFicha &CRegistroDiario::operator[](uint64_t i) {
   if(i<0 || i >= this->length) {
     throw out_of_range("Index out of range");
   }
-#if WITH_VECTORS
+#if defined WITH_VECTORS
   return *this->personas[i];
 #else
+  return *this->personas[i];
 #endif
 }
 
 void CRegistroDiario::ShowRegister() {
-#if WITH_VECTORS
+#if defined WITH_VECTORS
   for (auto &ficha : this->personas ) {
     ficha->show();
   }
 #else
+  for (uint64_t i=0; i<this->length; i++) {
+    this->personas[i]->show();
+  }
 #endif
 }
 
 void CRegistroDiario::ShowEmployees() {
-#if WITH_VECTORS
+#if defined WITH_VECTORS
   for (auto &ficha : this->personas) {
     if ( CRegistroDiario::EsEmpleado(*ficha) ) {
       ficha->show();
     }
   }
 #else
+  for (uint64_t i = 0; i < this->length; i++) {
+    if (CRegistroDiario::EsEmpleado(*this->personas[i])) {
+      this->personas[i]->show();
+    }
+  }
 #endif
 }
