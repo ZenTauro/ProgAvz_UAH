@@ -20,8 +20,10 @@ public:
   CCliente(string name = "", int age = 0, CHora hora = CHora{}, string dni = "");
 
   //
-  void show() override;
+  void show() const override;
   CFicha *Clone() const override;
+
+  friend ostream &operator<<(ostream &os, const CCliente &Cliente);
 
   ~CCliente();
 };

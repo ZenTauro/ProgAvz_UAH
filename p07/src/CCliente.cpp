@@ -19,12 +19,14 @@ CCliente::CCliente(string name, int age, CHora hora, string dni) {
 }
 
 ostream &operator<<(ostream &os, const CCliente &cliente) {
-  os << "Cliente: " << cliente.ObtenerNombre() << " " << cliente.GetDNI();
+  auto hora = cliente.ObtenerNacio();
+  os << "[" << hora << "] "
+     << "Cliente: " << cliente.ObtenerNombre() << " " << cliente.GetDNI();
 
   return os;
 }
 
-void CCliente::show() {
+void CCliente::show() const {
   cout << *this << endl;
 }
 

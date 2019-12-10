@@ -144,7 +144,7 @@ const CFicha & CRegistroDiario::FindByName(const string &name) const {
 #else
   for (uint64_t i = 0; i < this->length; i++) {
     if (this->personas[i]->ObtenerNombre() == name) {
-      res = ficha;
+      res = this->personas[i];
     }
   }
 #endif

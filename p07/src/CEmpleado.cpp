@@ -28,7 +28,7 @@ operator<<(ostream &os, const CEmpleado &emp) {
   return os;
 }
 
-void CEmpleado::show() {
+void CEmpleado::show() const {
   cout << *this << "\n";
 }
 

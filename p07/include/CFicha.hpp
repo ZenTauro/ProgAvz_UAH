@@ -6,7 +6,7 @@
 using namespace std;
 
 class CFicha {
-private:
+protected:
   string m_sNombre;
   int m_nEdad;
   CHora m_horaNacio;
@@ -25,7 +25,7 @@ public:
   virtual CHora ObtenerNacio() const;
   virtual void operator=(CFicha &obj);
 
-  virtual void show() = 0;
+  virtual void show() const = 0;
   virtual CFicha* Clone() const = 0;
 
   virtual ~CFicha() = 0;

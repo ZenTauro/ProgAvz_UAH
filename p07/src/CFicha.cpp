@@ -68,7 +68,7 @@ void VisualizarHora(CFicha& ficha) {
   delete[] fmt;
 }
 
-void CFicha::show() {
+void CFicha::show() const {
 #ifndef NDEBUG
   cout << "Calling virtual method on base class obj: " << this << " " << this->ObtenerNombre() << endl;
 #endif
