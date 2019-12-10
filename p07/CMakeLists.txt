@@ -59,7 +59,7 @@ file(GLOB objs     obj/*.o)
 # The data is just added to the executable, because in some IDEs (QtCreator)
 # files are invisible when they are not explicitly part of the project.
 add_executable(${BINARY} ${sources} ${objs})
-add_library(${BINARY}_lib STATIC ${sources} ${objs})
+add_library(${BINARY}_lib SHARED ${sources} ${objs})
 
 # Just for example add some compiler flags.
 target_compile_options(${BINARY} PUBLIC -Wall -Wfloat-conversion -pipe)

@@ -39,7 +39,8 @@ CRegistroDiario::CRegistroDiario(int num) : length{0} {
 
   this->nElementosMax = num;
 #if WITH_VECTORS
-  this->personas = vector<CFicha*>(num);
+  this->personas = vector<CFicha*>{};
+  this->personas.reserve(num);
 #else
   this->personas = new CFicha*[num]();
 #endif
