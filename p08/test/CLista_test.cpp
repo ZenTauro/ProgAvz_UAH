@@ -9,3 +9,17 @@ TEST(CLista, EstaVacia) {
   list.AgregarObjeto(2);
   EXPECT_FALSE(list.EstaVacia());
 }
+
+TEST(CLista, CopyConstructor) {
+  auto list1 = CLista<int>{};
+  list1.AgregarObjeto(2);
+  list1.AgregarObjeto(2);
+  list1.AgregarObjeto(2);
+  list1.AgregarObjeto(2);
+  list1.AgregarObjeto(2);
+  list1.AgregarObjeto(2);
+  list1.AgregarObjeto(2);
+  list1.AgregarObjeto(2);
+
+  auto list2 = CLista<int>{list1};
+}

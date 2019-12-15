@@ -1,4 +1,5 @@
 #include "CNodoLista.hpp"
+#include "CLista.hpp"
 #include <gtest/gtest.h>
 #include <string>
 
@@ -9,4 +10,9 @@ TEST(CNodoLista, CopyConstructor) {
 
   node1.SetSigNodo(node2);
   node2->SetSigNodo(node3);
+
+  auto node1_copy = CNodoLista<int>{node1};
+
+  delete node2;
+  delete node3;
 }

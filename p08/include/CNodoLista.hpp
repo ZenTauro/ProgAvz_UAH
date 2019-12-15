@@ -22,7 +22,7 @@ public:
   };
   CNodoLista(const CNodoLista<T> &NodoLista) {
     this->m_Dato = T{NodoLista.m_Dato};
-    this->m_pSigNodo = CNodoLista{NodoLista.m_pSigNodo};
+    this->m_pSigNodo = nullptr;
   };
 
   inline CNodoLista<T> *GetSigNodo() const { return this->m_pSigNodo; };
@@ -35,5 +35,7 @@ public:
     return *this;
   };
 
-  ~CNodoLista() {};
+  ~CNodoLista() {
+    this->m_pSigNodo = nullptr;
+  };
 };

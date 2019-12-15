@@ -42,6 +42,9 @@ CLista<T>::CLista() {
 
 template <class T>
 CLista<T>::CLista(const CLista<T> &lista) {
+  this->m_Actual = nullptr;
+  this->m_Primero = nullptr;
+  this->m_Ultimo = nullptr;
   *this = lista;
 }
 
@@ -60,10 +63,10 @@ CLista<T> &CLista<T>::operator=(const CLista<T> &Lista) {
   this->Vaciar();
   if (!Lista.EstaVacia()) {
     // copiar el primer elemento y posicionar m_Actual
-    m_Actual = m_Ultimo = m_Primero = new CNodoLista<T>(Lista.GetPrimero());
+    m_Actual = m_Ultimo = m_Primero = new CNodoLista<T>{Lista.GetPrimero()};
     // copiar el resto de los elementos
     while (Lista.TieneMas()) {
-      m_Actual->SetSigNodo(new CNodoLista<T>(Lista.GetActual()));
+      m_Actual->SetSigNodo(new CNodoLista<T>{Lista.GetActual()});
       m_Ultimo = m_Actual = m_Actual->GetSigNodo();
     }
   }
@@ -71,7 +74,8 @@ CLista<T> &CLista<T>::operator=(const CLista<T> &Lista) {
   return *this;
 }
 
-template <class T> void CLista<T>::Vaciar() noexcept {
+template <class T>
+void CLista<T>::Vaciar() noexcept {
   if (this->m_Primero != nullptr) {
     auto current = this->m_Primero;
     CNodoLista<T> *next = nullptr;
@@ -79,6 +83,7 @@ template <class T> void CLista<T>::Vaciar() noexcept {
     do {
       next = current->GetSigNodo();
       delete current;
+      current = next;
     } while (next != nullptr);
   }
 
