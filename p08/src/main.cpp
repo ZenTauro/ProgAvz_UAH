@@ -1,7 +1,3 @@
-#include "CCliente.hpp"
-#include "CEmpleado.hpp"
-#include "CHora.hpp"
-#include "CRegistroDiario.hpp"
 #include "types.hpp"
 #include "utils.hpp"
 #include <iostream>
