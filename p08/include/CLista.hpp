@@ -62,6 +62,8 @@ CLista<T> &CLista<T>::operator=(const CLista<T> &Lista) {
   // vaciar lista referenciada por this
   this->Vaciar();
   if (!Lista.EstaVacia()) {
+    auto og_pos = Lista.m_Actual;
+    const_cast<CLista<T> &>(Lista).m_Actual = og_pos;
     // copiar el primer elemento y posicionar m_Actual
     m_Actual = m_Ultimo = m_Primero = new CNodoLista<T>{Lista.GetPrimero()};
     // copiar el resto de los elementos
@@ -69,8 +71,10 @@ CLista<T> &CLista<T>::operator=(const CLista<T> &Lista) {
       m_Actual->SetSigNodo(new CNodoLista<T>{Lista.GetActual()});
       m_Ultimo = m_Actual = m_Actual->GetSigNodo();
     }
+    const_cast<CLista<T> &>(Lista).m_Actual = og_pos;
   }
 
+  this->Restart();
   return *this;
 }
 
@@ -94,7 +98,7 @@ void CLista<T>::Vaciar() noexcept {
 
 template <class T>
 void CLista<T>::Restart() const {
-  this->m_Actual = this->m_Primero;
+  const_cast<CLista<T>*>(this)->m_Actual = this->m_Primero;
 }
 
 template <class T>
