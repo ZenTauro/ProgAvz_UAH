@@ -1,6 +1,15 @@
 #pragma once
 
 #include "CNodoLista.hpp"
+#include <stdexcept>
+#include <string>
+
+using namespace std;
+
+class CIndiceIncorrecto : public out_of_range {
+public:
+  CIndiceIncorrecto(const string& s) : out_of_range(s) {};
+};
 
 // Forward declaration of templated class
 // this way we avoid a circular dependency problem
@@ -27,6 +36,7 @@ public:
   T &GetPrimero() const;
   T &GetActual() const;
 
+  T& operator[](int idx);
   CLista<T> &operator=(const CLista<T> &Lista);
 
   ~CLista();
@@ -127,4 +137,26 @@ T &CLista<T>::GetPrimero() const {
 template <class T>
 CLista<T>::~CLista() {
   this->Vaciar();
+}
+
+template <class T>
+T& CLista<T>::operator[](int idx) {
+  if(idx < 0) {
+    throw CIndiceIncorrecto{"Indice negativo"};
+  }
+  auto og = this->m_Actual;
+  auto ret = this->m_Actual;
+  this->Restart();
+
+  for(unsigned int i=0; i<idx; i++) {
+    if (this->m_Actual == nullptr) {
+      this->m_Actual = og;
+      throw CIndiceIncorrecto{"fuera de rango"};
+    }
+    this->GetActual();
+    ret = this->m_Actual;
+  }
+  this->m_Actual = og;
+
+  return ret->m_Dato;
 }
