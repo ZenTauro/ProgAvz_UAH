@@ -23,4 +23,8 @@ public:
   void Mostrar(ostream &os = cout) const;
   CSiniestroUrgente *Clonar() const;
   float GetPresupuesto() const;
+
+  friend ostream& operator<<(ostream &os, const CSiniestroUrgente &sin);
 };
+
+ostream &operator<<(ostream &os, const TSituacion &s);

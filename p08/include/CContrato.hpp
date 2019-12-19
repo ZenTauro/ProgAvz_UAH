@@ -18,8 +18,14 @@ private:
 
 public:
   CContrato(int NumSerie, const string &Desc = "", const string &FF = "",
-            long Poliza = 0, long ValorCompra = 0);
-  CContrato(const CContrato &c);
+            long Poliza = 0, long ValorCompra = 0)
+    : m_NumSerie(NumSerie), m_Descripcion(Desc), m_FechaFin(FF),
+      m_Poliza(Poliza), m_ValorCompra(ValorCompra) {
+    this->m_Siniestros = CLista<CSiniestro *>{};
+  };
+  CContrato(const CContrato &c)
+      : m_NumSerie(c.m_NumSerie), m_Descripcion(c.m_Descripcion), m_FechaFin(c.m_FechaFin),
+        m_Poliza(c.m_Poliza), m_ValorCompra(c.m_ValorCompra), m_Siniestros(c.m_Siniestros) {};
 
   inline void SetNumSerie(int ns) { m_NumSerie = ns; }
   inline void SetDescripcion(const string &d) { m_Descripcion = d; }
@@ -37,6 +43,8 @@ public:
   void MostrarSiniestros(ostream &os = cout);
 
   CContrato &operator=(const CContrato &c);
+
+  friend ostream &operator<<(ostream &os, CContrato &c);
 
   ~CContrato();
 };
