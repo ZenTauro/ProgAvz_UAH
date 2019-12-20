@@ -16,8 +16,7 @@ private:
 
 public:
   CNodoLista() { this->m_pSigNodo = nullptr; };
-  CNodoLista(const T &obj, CNodoLista<T> *pNodo = nullptr) {
-    this->m_Dato = obj;
+  CNodoLista(const T &obj, CNodoLista<T> *pNodo = nullptr) : m_Dato{obj} {
     this->m_pSigNodo = pNodo;
   };
   CNodoLista(const CNodoLista<T> &NodoLista) {

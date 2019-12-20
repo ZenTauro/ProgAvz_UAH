@@ -39,4 +39,9 @@ ostream &operator<<(ostream &os, CContrato &c) {
   return os;
 }
 
-CContrato::~CContrato() {}
+CContrato::~CContrato() {
+  this->m_Siniestros.Restart();
+  while(this->m_Siniestros.TieneMas()) {
+    delete this->m_Siniestros.GetActual();
+  }
+}

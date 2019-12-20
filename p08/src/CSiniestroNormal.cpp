@@ -1,7 +1,10 @@
 #include "CSiniestroNormal.hpp"
 #include <iostream>
 
+float CSiniestroNormal::m_CosteHoraMO;
+
 void CSiniestroNormal::Presupuestar(float Horas, float Piezas) {
+  this->m_CosteHoraMO = 1;
   this->m_HorasMO = Horas;
   this->m_CostePiezas = Piezas;
 }
@@ -19,3 +22,5 @@ ostream& operator<<(ostream &os, const CSiniestro &sin) {
      << "\",\"presupuesto\":\"" << sin.GetPresupuesto() << "\"}";
   return os;
 }
+
+CSiniestroNormal::~CSiniestroNormal() {}

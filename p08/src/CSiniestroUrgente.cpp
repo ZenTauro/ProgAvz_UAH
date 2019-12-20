@@ -1,12 +1,15 @@
 #include "CSiniestroUrgente.hpp"
 
-CSiniestroUrgente::CSiniestroUrgente(TSituacion s, const string &Desc) : CSiniestro() {
+float CSiniestroUrgente::m_Recargo = 15;
+float CSiniestroUrgente::m_CosteHoraMO = 20;
+
+CSiniestroUrgente::CSiniestroUrgente(TSituacion s, const string &Desc) : CSiniestro{} {
   this->m_Situacion = s;
   this->m_Descripcion = Desc;
 }
 
 void CSiniestroUrgente::Presupuestar(float Horas, float Piezas) {
-  this->m_Coste = this->m_CosteHoraMO * Horas + this->m_CostePiezas * Piezas;
+  this->m_Coste = this->m_CosteHoraMO * Horas + this->m_CostePiezas * Piezas + this->m_Recargo;
 }
 
 ostream &operator<<(ostream &os, const CSiniestroUrgente &sin) {
@@ -44,3 +47,5 @@ ostream &operator<<(ostream &os, const TSituacion &s) {
   }
   return os;
 }
+
+CSiniestroUrgente::~CSiniestroUrgente() {}
