@@ -7,8 +7,9 @@ CCliente::CCliente(const string &Nom, const CContrato &c) {
   this->m_Contratos.AgregarObjeto(c);
 }
 
-void CCliente::AgregarContrato(const CContrato &c) {
+CCliente& CCliente::AgregarContrato(const CContrato &c) {
   this->m_Contratos.AgregarObjeto(c);
+  return *this;
 }
 
 ostream &operator<<(ostream &os, CCliente &c) {
@@ -20,4 +21,17 @@ ostream &operator<<(ostream &os, CCliente &c) {
   c.m_Contratos.Restart();
 
   return os;
+}
+
+CCliente::operator long() const {
+  long ret = 0;
+
+  this->m_Contratos.Restart();
+  while (this->m_Contratos.TieneMas()) {
+    ret++;
+    this->m_Contratos.GetActual();
+  }
+  this->m_Contratos.Restart();
+
+  return ret;
 }

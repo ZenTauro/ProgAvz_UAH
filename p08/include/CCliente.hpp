@@ -16,7 +16,9 @@ public:
   CCliente(const string &Nom, const CContrato &c);
   inline void SetNombre(const string &Nom) { this->m_Nombre = Nom; };
   inline string GetNombre() const { return this->m_Nombre; };
-  void AgregarContrato(const CContrato &c);
+  CCliente& AgregarContrato(const CContrato &c);
+
+  operator long() const;
 
   friend ostream &operator<<(ostream &os, CCliente &c);
 };

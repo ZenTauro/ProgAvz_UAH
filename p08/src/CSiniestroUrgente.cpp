@@ -9,7 +9,8 @@ CSiniestroUrgente::CSiniestroUrgente(TSituacion s, const string &Desc) : CSinies
 }
 
 void CSiniestroUrgente::Presupuestar(float Horas, float Piezas) {
-  this->m_Coste = this->m_CosteHoraMO * Horas + this->m_CostePiezas * Piezas + this->m_Recargo;
+  this->m_Coste = this->m_CosteHoraMO * Horas + this->m_CostePiezas * Piezas +
+                  this->m_Recargo;
 }
 
 ostream &operator<<(ostream &os, const CSiniestroUrgente &sin) {

@@ -4,5 +4,6 @@
 
 TEST(CSiniestroUrgente, DefaultConstructor) {
   auto c = CSiniestroUrgente{TSituacion::local};
-  EXPECT_EQ(c.Presupuestar(), 0);
+  c.Presupuestar();
+  EXPECT_EQ(c.GetPresupuesto(), 25);
 }
