@@ -8,6 +8,10 @@ Para poder hacer uso de estas herramientas a la hora de demostrar
 que el programa es correcto, hay que compilarlo con unas opciones
 específicas.
 
+Por defecto se intentan construir los test, lo cual incrementa el
+tiempo de enlazado, para desactivarlos hay que pasar el flag
+`-DPACKAGE_TESTS=OFF`.
+
 ## GCC Release `CFicha**`
 Para compilar el programa con GCC, se utilizará el siguiente comando
 ```sh
@@ -20,6 +24,8 @@ cmake \                                 # comprobaciones en
     -GNinja \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=YES \
     -DCMAKE_BUILD_TYPE=Release
+
+cmake --build build
 ```
 
 ## Clang Debug `vector<CFicha *>`
@@ -32,6 +38,8 @@ CXXFLAGS="-fsanitize=address -march=native -O0 -flto" \
 cmake \
     -DCMAKE_BUILD_TYPE=debug -BDebug \
     -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
+
+cmake --build build
 ```
 
 # Flags
