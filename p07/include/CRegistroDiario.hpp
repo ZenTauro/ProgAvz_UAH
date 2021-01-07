@@ -30,7 +30,7 @@ public:
     bool ret = true;
     try {
       auto _dummy = dynamic_cast<const CEmpleado &>(obj);
-    } catch (bad_cast &e) {
+    } catch (const std::bad_cast &e) {
       ret = false;
     }
 

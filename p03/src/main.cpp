@@ -38,7 +38,7 @@ int main() {
 
         cout << "Formato: ";
         utils::LeerCadena(line, 10);
-      } catch (exception &e) {
+      } catch (const exception &e) {
         cout << "Entrada no valida" << endl;
         break;
       }

@@ -2,6 +2,7 @@
 #include "types.hpp"
 #include <iostream>
 #include <istream>
+#include <limits>
 #include <string>
 
 namespace utils {
